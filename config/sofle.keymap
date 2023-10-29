@@ -15,6 +15,18 @@
 #define ADJUST 2
 
 / {
+    behaviors {
+        homeend: home_end {
+            compatible = "zmk,behavior-mod-morph";
+            label = "HOME_END";
+            #binding-cells = <0>;
+            bindings = <&kp HOME>, <&kp END>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+};
+
+/ {
 
    // Activate ADJUST layer by pressing raise and lower
     conditional_layers {
