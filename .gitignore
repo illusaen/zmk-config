@@ -1,0 +1,10 @@
+just-flake.just
+.pre-commit-config.yaml
+.build
+.direnv
+.west
+modules
+firmware
+zephyr
+zmk
+draw/base.yaml
