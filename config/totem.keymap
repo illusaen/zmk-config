@@ -158,12 +158,10 @@ ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
 // Jump to start/end of word on PC.
 #define PC_WF    LC(RIGHT)              /* Jump forward a word on PC */
 #define PC_WB    LC(LEFT)               /* Jump backward a word on PC */
-#define PC_START_OF_WD &kp PC_WF &kp PC_WB
-#define PC_END_OF_WD &kp PC_WB &kp PC_WF
-ZMK_TRI_STATE(sel_word, bindings = <PC_START_OF_WD &kp LS(PC_WF)>, <&kp LS(PC_WF)>, <&kp LS(RIGHT)>;)
-ZMK_TRI_STATE(sel_word_bwd, bindings = <PC_END_OF_WD &kp LS(PC_WB)>, <&kp LS(PC_WB)>, <&kp LS(LEFT)>;)
-SIMPLE_MORPH(sel_wd_morph, CTL, &sel_word, &sel_word_bwd)
-SIMPLE_MORPH(mv_wd_morph, CTL, &kp PC_WF, &kp PC_WB)
+ZMK_TRI_STATE(sel_word, bindings = <&kp PC_WF &kp PC_WB &kp LS(PC_WF)>, <&kp LS(PC_WF)>, <&kp LS(RIGHT)>;)
+ZMK_TRI_STATE(sel_word_bwd, bindings = <&kp PC_WB &kp PC_WF &kp LS(PC_WB)>, <&kp LS(PC_WB)>, <&kp LS(LEFT)>;)
+SIMPLE_MORPH(sel_wd_morph, SFT, &sel_word, &sel_word_bwd)
+SIMPLE_MORPH(mv_wd_morph, SFT, &kp PC_WF, &kp PC_WB)
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
@@ -196,9 +194,9 @@ ZMK_BASE_LAYER(Base,
 
 ZMK_BASE_LAYER(Nav,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp ESC          &mv_wd_morph     &sel_wd_morph    SMART_NUM        &kp TAB        ,   SCREENSHOT       &kp LA(S)        NAV_UP           &swapper         &kp LA(LS(1))  ,
+                  &kp ESC          &mv_wd_morph     &sel_wd_morph    SMART_NUM        &kp TAB        ,   SCREENSHOT       &kp LA(S)        NAV_UP           &swapper         &kp LA(LS(N1))  ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &sk LGUI         &sk LALT         &sk LCTRL        &sk LSHFT        &kp LS(TAB)    ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        &kp LA(LS(2))  ,
+                  &kp LGUI         &kp LALT         &kp LCTRL        &kp LSHFT        &kp LS(TAB)    ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        &kp LA(LS(N2))  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     &kp K_CANCEL  &kp LC(S)        &kp LC(A)        &copy_cut        &kp LC(V)        &kp LC(Z)      ,   &kp LS(LC(Z))    &kp LA(LEFT)     CMNT             &kp LA(RIGHT)    ___              ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
