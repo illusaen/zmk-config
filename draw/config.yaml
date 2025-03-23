@@ -25,6 +25,21 @@ parse_config:
     "&kp LG(LC(LS(A)))": Pin App
     "&kp LG(LC(LS(Q)))": Pin Win
 
+    "&js_fn": = () =>
+    "&js_interp": "`${}`"
+    "&dbl_arrow": =>
+    "&sgl_arrow": ->
+    "&sel_word": Sel Word
+    "&sel_word_bwd": Sel Wd Bd
+
+    "&kp LC(A)": Select All
+    "&kp LC(S)": Save
+    "&kp LC(LS(T))": Terminal
+    "&kp LC(SPACE)": Launcher
+    "&kp LG(LS(S))": Screenshot
+    "&kp LC(SLASH)": Cmnt
+    
+    "&copy_cut": { "t": "Copy", "h": "Cut" }
     "&swapper": Next Win
     "&kp LS(TAB)": Prev Win
     "&dot_spc": Sentence

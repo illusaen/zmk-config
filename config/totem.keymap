@@ -157,29 +157,27 @@ ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
 #define PC_WB    LC(LEFT)               /* Jump backward a word on PC */
 #define PC_START_OF_WD &kp PC_WF &kp PC_WB
 #define PC_END_OF_WD &kp PC_WB &kp PC_WF
-ZMK_TRI_STATE(sel_word, bindings = <PC_START_OF_WD &kt LSHFT PC_WF>, <PC_WF>, <&kt LSHFT>;)
-ZMK_TRI_STATE(sel_word_bwd, bindings = <PC_END_OF_WD &kt LSHFT PC_WB>, <PC_WB>, <&kt LSHFT>;)
-SIMPLE_MORPH(sel_wd_morph, SFT, &sel_word, &sel_word_bwd)
+ZMK_TRI_STATE(sel_word, bindings = <PC_START_OF_WD &kp PC_WF>, <&kp LS(PC_WF)>, <&kp LS(RIGHT)>;)
+ZMK_TRI_STATE(sel_word_bwd, bindings = <PC_END_OF_WD &kp PC_WB>, <&kp LS(PC_WB)>, <&kp LS(LEFT)>;)
+SIMPLE_MORPH(sel_wd_morph, CTL, &sel_word, &sel_word_bwd)
 
 // Misc aliases. [TODO: clean up]
-#define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
-#define DSK_NEXT  &hmr LALT LG(LC(RIGHT)) // Next     desktop.
+#define DSK_PREV  &hmr RSHFT LG(LC(LEFT)) // Previous desktop.
+#define DSK_NEXT  &hmr LGUI LG(LC(RIGHT)) // Next     desktop.
 #define PIN_WIN   &kp LG(LC(LS(Q)))       // Pin window across desktops.
 #define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
 #define DSK_MGR   &kp LA(GRAVE)           // Desktop manager.
-#define VOL_DOWN  &hmr RSHFT C_VOL_DN
+#define VOL_DOWN  &hmr LCTRL C_VOL_DN
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
 ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE>;)
-ZMK_MACRO(jsfn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp LBRC>;)
+ZMK_MACRO(js_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp LBRC>;)
 
 #define TERMINAL &kp LC(LS(T))
 #define LAUNCHER &kp LC(SPACE)
 #define SCREENSHOT &kp LG(LS(S))
 #define CMNT &kp LC(SLASH)
-#define HMR_CTRL_JSFN &hmr LCTRL &jsfn
-#define HMR_GUI_CMT &hmr LGUI LC(SLASH)
 
 /* Keymap */
 
@@ -195,9 +193,9 @@ ZMK_BASE_LAYER(Base,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp Q            &kp W            &kp E            &kp R            &kp T          ,   &kp Y            &kp U            &kp I            &kp O            &kp P          ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI A      &hml LALT S      &hml LSHFT D     &hml LCTRL F     &kp G          ,   &kp H            &hmr LCTRL J     &hmr RSHFT K     &hmr LALT L      &hmr LGUI SQT  ,
+                  &hml LALT A      &hml LGUI S      &hml LCTRL D     &hml LSHFT F     &kp G          ,   &kp H            &hmr RSHFT J     &hmr LCTRL K     &hmr LGUI L      &hmr LALT RET  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    &mo FN        &kp Z            &kp X            &kp C            &kp V            &kp B          ,   &kp N            &kp M            &comma_morph     &dot_morph       &qexcl           &kp RET        ,
+    &mo FN        &kp Z            &kp X            &kp C            &kp V            &kp B          ,   &kp N            &kp M            &comma_morph     &dot_morph       &qexcl           &kp SQT        ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     MAGIC_SHIFT      &kp SPACE        &mo NAV        ,   &mo SYM          &kp SPACE        &kp BSPC
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
@@ -207,9 +205,9 @@ ZMK_BASE_LAYER(Nav,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp ESC          &kp K_CANCEL     &sel_wd_morph    SMART_NUM        &kp TAB        ,   SCREENSHOT       &kp HOME         NAV_UP           &kp END          NAV_DEL        ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &sk LGUI         &sk LALT         &sk LSHFT        &sk LCTRL        &swapper       ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        ___            ,
+                  &sk LALT         &sk LGUI         &sk LCTRL        &sk LSHFT        &swapper       ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        ___            ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    ___           &kp LC(A)        &kp LC(S)        &copy_cut        &kp LC(V)        &kp LS(TAB)    ,   TERMINAL         &kp PG_UP        CMNT             &kp PG_DN        NAV_BSPC         ___            ,
+    ___           &kp LC(S)        &kp LC(A)        &copy_cut        &kp LC(V)        &kp LC(Z)      ,   TERMINAL         &kp PG_UP        CMNT             &kp PG_DN        NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     ___              ___              ___            ,   ___              ___              ___
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
@@ -217,11 +215,11 @@ ZMK_BASE_LAYER(Nav,
 
 ZMK_BASE_LAYER(Sym,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp GRAVE        &kp LBRC         &kp LBKT         &lpar_lt         &kp EXCL       ,   &kp AT           &rpar_gt         &kp RBKT         &kp RBRC         &kp PRCNT      ,
+                  &kp GRAVE        &kp LBKT         &kp LBRC         &lpar_lt         &kp EXCL       ,   &kp AT           &rpar_gt         &kp RBRC         &kp RBKT         &kp PRCNT      ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI MINUS  &hml LALT PIPE   &hml LSHFT SLASH &hml LCTRL EQUAL &kp DLLR       ,   &kp HASH         HMR_CTRL_JSFN    &hmr RSHFT CARET &hmr LALT PLUS   HMR_GUI_CMT    ,
+                  &hml LALT MINUS  &hml LGUI PIPE   &hml LCTRL SLASH &hml LSHFT EQUAL &kp DLLR       ,   &kp AMPS         &hmr RSHFT HASH  &hmr LCTRL CARET &hmr LGUI PLUS   &hmr LALT ASTRK,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    ___           &kp BSLH         &kp AMPS         &kp HASH         &kp UNDER        &kp QMARK      ,   &kp ASTRK        &sgl_arrow       &dbl_arrow       &js_interp       &kp BSPC         ___            ,
+    ___           &kp BSLH         &kp AMPS         &kp HASH         &kp UNDER        &kp QMARK      ,   &js_fn           &sgl_arrow       &dbl_arrow       &js_interp       &kp BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     ___              ___              ___            ,   ___              ___              ___
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
@@ -231,7 +229,7 @@ ZMK_BASE_LAYER(Fn,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp F12          &kp F7           &kp F8           &kp F9           ___            ,   ___              &kp C_PREV       &kp C_VOL_UP     &kp C_NEXT       &kp C_PP       ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI F11    &hml LALT F4     &hml LSHFT F5    &hml LCTRL F6    ___            ,   ___              DSK_PREV         VOL_DOWN         DSK_NEXT         &kp C_MUTE     ,
+                  &hml LALT F11    &hml LGUI F4     &hml LCTRL F5    &hml LSHFT F6    ___            ,   ___              DSK_PREV         VOL_DOWN         DSK_NEXT         &kp C_MUTE     ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     ___           &kp F10          &kp F1           &kp F2           &kp F3           ___            ,   PIN_APP          PIN_WIN          DSK_MGR          ___              ___              ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
@@ -243,7 +241,7 @@ ZMK_BASE_LAYER(Num,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp N1           &kp N2           &kp N3           &kp N4           &kp N5         ,   &kp N6           &kp N7           &kp N8           &kp N9           &kp N0         ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI MINUS  &hml LALT PLUS   &hml LSHFT SLASH &hml LCTRL EQUAL &kp DLLR       ,   &kp HASH         &hmr LCTRL EQUAL &hmr LSHFT SLASH &hmr RALT PLUS   &hmr LGUI MINUS,
+                  &hml LALT MINUS  &hml LGUI PLUS   &hml LCTRL SLASH &hml LSHFT EQUAL &kp DLLR       ,   &kp HASH         &hmr RSHFT EQUAL &hmr LCTRL SLASH &hmr LGUI PLUS   &hmr LALT MINUS,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     ___           ___              ___              &kp ASTRK        &kp DOT          DSK_PREV       ,   DSK_NEXT         &kp DOT          ___              ___              NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
