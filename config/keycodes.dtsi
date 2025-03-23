@@ -1,0 +1,8 @@
+#define BRK PAUSE_BREAK
+#define EQL EQUAL
+#define MIN MINUS
+#define CRT CARET
+#define PUP PG_UP
+#define PDN PG_DN
+#define VUP C_VOL_UP
+#define VDN C_VOL_DN

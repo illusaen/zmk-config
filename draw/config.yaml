@@ -33,15 +33,29 @@ parse_config:
     "&sel_word_bwd": Sel Wd Bd
 
     "&kp LC(A)": Select All
+    "&kp LC(V)": Paste
+    "&kp LC(Z)": Undo
+    "&kp LS(LC(Z))": Redo
     "&kp LC(S)": Save
-    "&kp LC(LS(T))": Terminal
-    "&kp LC(SPACE)": Launcher
-    "&kp LG(LS(S))": Screenshot
-    "&kp LC(SLASH)": Cmnt
+    "&kp LC(SPACE)": Launch
+    "&kp LG(LS(S))": Scrnsht
+    "&kp LC(SLASH)": Comment
+
+    "&kp LA(S)": Cycle Wkspc
+    "&kp LA(LEFT)": Prev Win
+    "&kp LA(RIGHT)": Next Win
+    "&kp LA(LS(1))": Mv Wkspc 1
+    "&kp LA(LS(2))": Mv Wkspc 2
+    "&kp LC(LEFT)": Word Bwd
+    "&kp LC(RIGHT)": Word Fd
     
     "&copy_cut": { "t": "Copy", "h": "Cut" }
+    "&comma_morph": { "t": ",", "s": ";", "h": "<" }
+    "&dot_morph": { "t": ".", "s": ":", "h": ">" }
+    "&brace": { "t": "{", "h": "}" }
+    "&bracket": { "t": "[", "h": "]" }
+    "&paren": { "t": "(", "h": ")" }
     "&swapper": Next Win
-    "&kp LS(TAB)": Prev Win
     "&dot_spc": Sentence
     "&num_dance": { "t": "Numword", "s": "Sticky Num" }
     "&magic_shift": { "t": Magic, "h": "Shift" }
