@@ -83,9 +83,9 @@ clean-nix:
 # parse & plot keymap
 draw:
     #!/usr/bin/env bash
-    # set -euo pipefail
+    set -euo pipefail
     keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/totem.keymap" --virtual-layers Combos > "{{ draw }}/base.yaml"
-    # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
+    yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
     keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "totem" >"{{ draw }}/base.svg"
 
 # initialize west

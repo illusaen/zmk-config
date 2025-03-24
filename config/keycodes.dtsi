@@ -1,8 +1,43 @@
-#define BRK PAUSE_BREAK
-#define EQL EQUAL
-#define MIN MINUS
-#define CRT CARET
-#define PUP PG_UP
-#define PDN PG_DN
-#define VUP C_VOL_UP
-#define VDN C_VOL_DN
+#define BRK  PAUSE_BREAK
+#define EQUL EQUAL
+#define MIN  MINUS
+#define CRT  CARET
+#define PUP  PG_UP
+#define PDN  PG_DN
+#define VUP  C_VOL_UP
+#define VDN  C_VOL_DN
+
+#define LAUNCHER &kp LC(SPACE)
+#define SCREENSHOT &kp LG(LS(S))
+#define CMNT &kp LC(SLASH)
+
+ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
+ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
+ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE>;)
+ZMK_MACRO(js_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp SPACE &kp LBRC>;)
+
+// Trigger tap-action on all interrupts.
+#define MT_CORE                                                                \
+  flavor = "tap-preferred";                                                    \
+  tapping-term-ms = <220>;                                                     \
+  quick-tap-ms = <220>;                                                        \
+  hold-trigger-key-positions = <0>;
+
+&mt { MT_CORE };
+
+ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
+ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
+
+#define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
+#define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
+#define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
+#define NAV_DOWN  &mt LC(END)  DOWN  // Tap: down  | Long-tap: end   of doc.
+#define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
+#define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
+
+// Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
+#define MASK_MODS(NAME, MODS, BINDING)                                         \
+  ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
+
+MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
+MASK_MODS(masked_end,  (MOD_LCTL), &kp END)

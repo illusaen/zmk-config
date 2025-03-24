@@ -63,63 +63,9 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
   MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
-#include "mouse.dtsi"
 #include "keycodes.dtsi"
-
-// Trigger tap-action on all interrupts.
-#define MT_CORE                                                                \
-  flavor = "tap-preferred";                                                    \
-  tapping-term-ms = <220>;                                                     \
-  quick-tap-ms = <220>;                                                        \
-  hold-trigger-key-positions = <0>;
-
-&mt { MT_CORE };
-
-ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
-ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
-
-#define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
-#define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
-#define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
-#define NAV_DOWN  &mt LC(END)  DOWN  // Tap: down  | Long-tap: end   of doc.
-#define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
-#define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
-
-// Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
-#define MASK_MODS(NAME, MODS, BINDING)                                         \
-  ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
-
-MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
-MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
-
-/* Magic-shift & auto-layers */
-
-// Tap: repeat after alpha, else sticky-shift |
-// Shift + tap/ double-tap: caps-word | Hold: shift.
-#define MAGIC_SHIFT &magic_shift LSHFT 0
-ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>;
-             flavor = "balanced"; tapping-term-ms = <200>;
-             quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_MOD_MORPH(magic_shift_tap, bindings = <&shift_repeat>, <&caps_word>;
-              mods = <(MOD_LSFT)>;)
-ZMK_ADAPTIVE_KEY(
-    shift_repeat, bindings = <&sk LSHFT>;
-    repeat {
-      trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
-      bindings = <&key_repeat>;
-      max-prior-idle-ms = <1200>;
-      strict-modifiers;
-    };)
-&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
-  /delete-property/ ignore-modifiers;
-};
-
-// Tap: num-word | double-tap: sticky num-layer | Hold: num-layer.
-#define SMART_NUM &smart_num NUM 0
-ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced";
-             tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
-              tapping-term-ms = <200>;)
+#include "autolayer.dtsi"
+#include "combos.dtsi"
 
 /* Custom behaviors */
 
@@ -158,19 +104,8 @@ ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
 // Jump to start/end of word on PC.
 #define PC_WF    LC(RIGHT)              /* Jump forward a word on PC */
 #define PC_WB    LC(LEFT)               /* Jump backward a word on PC */
-ZMK_TRI_STATE(sel_word, bindings = <&kp PC_WF &kp PC_WB &kp LS(PC_WF)>, <&kp LS(PC_WF)>, <&kp LS(RIGHT)>;)
-ZMK_TRI_STATE(sel_word_bwd, bindings = <&kp PC_WB &kp PC_WF &kp LS(PC_WB)>, <&kp LS(PC_WB)>, <&kp LS(LEFT)>;)
-SIMPLE_MORPH(sel_wd_morph, SFT, &sel_word, &sel_word_bwd)
-SIMPLE_MORPH(mv_wd_morph, SFT, &kp PC_WF, &kp PC_WB)
-
-ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
-ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
-ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE>;)
-ZMK_MACRO(js_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp SPACE &kp LBRC>;)
-
-#define LAUNCHER &kp LC(SPACE)
-#define SCREENSHOT &kp LG(LS(S))
-#define CMNT &kp LC(SLASH)
+ZMK_TRI_STATE(sel_word, bindings = <&kp PC_WF &kp PC_WB &kp LS(PC_WF)>, <&kp LS(PC_WF)>, <&kp LS(PC_WF)>;)
+ZMK_TRI_STATE(sel_word_bwd, bindings = <&kp PC_WB &kp PC_WF &kp LS(PC_WB)>, <&kp LS(PC_WB)>, <&kp LS(PC_WB)>;)
 
 /* Keymap */
 ZMK_CONDITIONAL_LAYER(sys, NAV SYM, NUM) // NAV + SYM --> NUM.
@@ -194,11 +129,11 @@ ZMK_BASE_LAYER(Base,
 
 ZMK_BASE_LAYER(Nav,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp ESC          &mv_wd_morph     &sel_wd_morph    SMART_NUM        &kp TAB        ,   SCREENSHOT       &kp LA(S)        NAV_UP           &swapper         &kp LA(LS(N1))  ,
+                  &kp ESC          &sel_word_bwd    &sel_word        &num_word NUM    &kp TAB        ,   SCREENSHOT       &kp PC_WF        NAV_UP           &kp PC_WB        NAV_DEL        ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &kp LGUI         &kp LALT         &kp LCTRL        &kp LSHFT        &kp LS(TAB)    ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        &kp LA(LS(N2))  ,
+                  &kp LGUI         &kp LALT         &kp LCTRL        &kp LSHFT        &kp LS(TAB)    ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        &kp RET        ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    &kp K_CANCEL  &kp LC(S)        &kp LC(A)        &copy_cut        &kp LC(V)        &kp LC(Z)      ,   &kp LS(LC(Z))    &kp LA(LEFT)     CMNT             &kp LA(RIGHT)    ___              ___            ,
+    &kp K_CANCEL  &kp LC(S)        &kp LC(A)        &copy_cut        &kp LC(V)        &kp LA(LS(N1)) ,   &kp LA(LS(N2))   &kp LA(LEFT)     &kp LA(S)        &kp LA(RIGHT)    NAV_BSPC         CMNT           ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     ___              ___              ___            ,   ___              ___              ___
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
@@ -208,7 +143,7 @@ ZMK_BASE_LAYER(Sym,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp GRAVE        &bracket         &brace           &paren           ___            ,   ___              &kp ASTRK        ___              ___              NAV_DEL        ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI MIN    &hml LALT PIPE   &hml LCTRL FSLH  &hml LSHFT EQL   &kp DLLR       ,   &kp AMPS         &hmr RSHFT AT    &hmr LCTRL CRT   &hmr LALT PLUS   &hmr LGUI RET  ,
+                  &hml LGUI MIN    &hml LALT PIPE   &hml LCTRL FSLH  &hml LSHFT EQUL  &kp DLLR       ,   &kp AMPS         &hmr RSHFT AT    &hmr LCTRL CRT   &hmr LALT PLUS   &hmr LGUI RET  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     ___           &kp BSLH         &kp PRCNT        &kp HASH         &kp UNDER        ___            ,   &js_fn           &sgl_arrow       &dbl_arrow       &js_interp       NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
@@ -218,7 +153,7 @@ ZMK_BASE_LAYER(Sym,
 
 ZMK_BASE_LAYER(Fn,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp F12          &kp F7           &kp F8           &kp F9           ___            ,   &bootloader      &kp C_PREV       &kp VUP          &kp C_NEXT       &kp C_PP       ,
+                  &kp F12          &kp F7           &kp F8           &kp F9           &bootloader    ,   &bootloader      &kp C_PREV       &kp VUP          &kp C_NEXT       &kp C_PP       ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
                   &hml LGUI F11    &hml LALT F4     &hml LCTRL F5    &hml LSHFT F6    ___            ,   ___              &hmr RSHFT PUP   &hmr LCTRL VDN   &hmr LALT PDN    &hmr LGUI BRK  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
@@ -232,7 +167,7 @@ ZMK_BASE_LAYER(Num,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp N1           &kp N2           &kp N3           &kp N4           &kp N5         ,   &kp N6           &kp N7           &kp N8           &kp N9           &kp N0         ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI MIN    &hml LALT PLUS   &hml LCTRL FSLH  &hml LSHFT EQL   &kp DLLR       ,   &kp PRCNT        &hmr RSHFT LPAR  &hmr LCTRL RPAR  &hmr LALT PLUS   &hmr LGUI RET  ,
+                  &hml LGUI MIN    &hml LALT PLUS   &hml LCTRL FSLH  &hml LSHFT EQUL  &kp DLLR       ,   &kp PRCNT        &hmr RSHFT LPAR  &hmr LCTRL RPAR  &hmr LALT PLUS   &hmr LGUI RET  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     ___           ___              ___              &kp ASTRK        &kp DOT          &kp HASH       ,   ___              ___              ___              ___              NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
