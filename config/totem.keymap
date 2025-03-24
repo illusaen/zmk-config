@@ -102,10 +102,8 @@ ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
               tapping-term-ms = <200>;)    
 
 // Jump to start/end of word on PC.
-#define PC_WF    LC(RIGHT)              /* Jump forward a word on PC */
-#define PC_WB    LC(LEFT)               /* Jump backward a word on PC */
-ZMK_TRI_STATE(sel_word, bindings = <&kp PC_WF &kp PC_WB &kp LS(PC_WF)>, <&kp LS(PC_WF)>, <&kp LS(PC_WF)>;)
-ZMK_TRI_STATE(sel_word_bwd, bindings = <&kp PC_WB &kp PC_WF &kp LS(PC_WB)>, <&kp LS(PC_WB)>, <&kp LS(PC_WB)>;)
+ZMK_TRI_STATE(sel_word, bindings = <&kp LC(RIGHT) &kp LC(LEFT) &kp LS(LC(RIGHT))>, <&kp LS(LC(RIGHT))>, <&none>;)
+ZMK_TRI_STATE(sel_word_bwd, bindings = <&kp LC(LEFT) &kp LC(RIGHT) &kp LS(LC(LEFT))>, <&kp LS(LC(LEFT))>, <&none>;)
 
 /* Keymap */
 ZMK_CONDITIONAL_LAYER(sys, NAV SYM, NUM) // NAV + SYM --> NUM.
@@ -129,7 +127,7 @@ ZMK_BASE_LAYER(Base,
 
 ZMK_BASE_LAYER(Nav,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp ESC          &sel_word_bwd    &sel_word        &num_word NUM    &kp TAB        ,   SCREENSHOT       &kp PC_WF        NAV_UP           &kp PC_WB        NAV_DEL        ,
+                  &kp ESC          &sel_word_bwd    &sel_word        &num_word NUM    &kp TAB        ,   SCREENSHOT       &kp LC(LEFT)     NAV_UP           &kp LC(RIGHT)     NAV_DEL        ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
                   &kp LGUI         &kp LALT         &kp LCTRL        &kp LSHFT        &kp LS(TAB)    ,   LAUNCHER         NAV_LEFT         NAV_DOWN         NAV_RIGHT        &kp RET        ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
@@ -169,7 +167,7 @@ ZMK_BASE_LAYER(Num,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
                   &hml LGUI MIN    &hml LALT PLUS   &hml LCTRL FSLH  &hml LSHFT EQUL  &kp DLLR       ,   &kp PRCNT        &hmr RSHFT LPAR  &hmr LCTRL RPAR  &hmr LALT PLUS   &hmr LGUI RET  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    ___           ___              ___              &kp ASTRK        &kp DOT          &kp HASH       ,   ___              ___              ___              ___              NAV_BSPC         ___            ,
+    ___           ___              ___              &kp ASTRK        &kp DOT          &kp HASH       ,   ___              ___              ___              &kp DOT          NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     ___              ___              ___            ,   ___              ___              ___
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
