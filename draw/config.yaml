@@ -41,11 +41,11 @@ parse_config:
     "&kp LG(LS(S))": Scrnsht
     "&kp LC(SLASH)": Comment
 
-    "&kp LA(S)": Cycle Wkspc
+    "&kp LA(S)": Cycle Wks
     "&kp LA(LEFT)": Prev Win
     "&kp LA(RIGHT)": Next Win
-    "&kp LA(LS(1))": Mv Wkspc 1
-    "&kp LA(LS(2))": Mv Wkspc 2
+    "&kp LA(LS(N1))": Move Wks 1
+    "&kp LA(LS(N2))": Move Wks 2
     "&kp LC(LEFT)": Word Bwd
     "&kp LC(RIGHT)": Word Fd
     
