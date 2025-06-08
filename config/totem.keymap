@@ -84,7 +84,7 @@ ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
               tapping-term-ms = <200>;)
 
 /* Keymap */
-ZMK_CONDITIONAL_LAYER(sys, NAV SYM, NUM) // NAV + SYM --> NUM.
+ZMK_CONDITIONAL_LAYER(sys, NAV SYM, FN) // NAV + SYM --> FN.
 
 #ifndef ZMK_BASE_LAYER
   #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
@@ -95,9 +95,9 @@ ZMK_BASE_LAYER(Base,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
                   &kp Q            &kp W            &kp E            &kp R            &kp T          ,   &kp Y            &kp U            &kp I            &kp O            &kp P          ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LGUI A      &hml LALT S      &hml LCTRL D     &hml LSHFT F     &kp G          ,   &kp H            &hmr RSHFT J     &hmr LCTRL K     &hmr LALT L      &hmr LGUI RET  ,
+                  &hml LGUI A      &hml LALT S      &hml LCTRL D     &hml LSHFT F     &kp G          ,   &kp H            &hmr RSHFT J     &hmr LCTRL K     &hmr LALT L      &hmr LGUI SQT,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
-    &mo FN        &kp Z            &kp X            &kp C            &kp V            &kp B          ,   &kp N            &kp M            &comma_morph     &dot_morph       &qexcl           &kp SQT        ,
+    &mo NUM       &kp Z            &kp X            &kp C            &kp V            &kp B          ,   &kp N            &kp M            &comma_morph     &dot_morph       &kp RET,         &qexcl
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┼────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
                                                     MAGIC_SHIFT      &kp SPACE        &mo NAV        ,   &mo SYM          &kp SPACE        &kp BSPC
 //                                                ╰────────────────┴────────────────┴────────────────╯ ╰────────────────┴────────────────┴────────────────╯
