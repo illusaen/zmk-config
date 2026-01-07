@@ -8,7 +8,7 @@
 #define VDN  C_VOL_DN
 
 #define LAUNCHER &kp LC(SPACE)
-#define SCREENSHOT &kp LG(LS(S))
+#define SCREENSHOT &kp LG(LC(LS(N4)))
 #define CMNT &kp LC(SLASH)
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
