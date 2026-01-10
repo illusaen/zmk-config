@@ -1,0 +1,85 @@
+/* Quick release Sticky Layer Behavior that does not ignore modifiers using
+   defined timer for continuing the word and line selection feature */
+STICKY_LAYER_NO_MODS(sl_select_cont, SELECT_TIMEOUT_MS)
+
+/* Select Macro definition helper */
+#define SELECT_HELPER(NAME, SETUP, SELECTION_BINDING, CLEANUP) \
+    STATE_TRANSITION_WITH_EXIT(NAME, SETUP, SELECTION_BINDING, CLEANUP, \
+        &sl_select_cont, SELECT_CONT_SL)
+
+/* Select word start Macro helper */
+#define SELECT_WORD_START_MACRO(NAME, SETUP_BINDINGS, SELECTION_BINDING) \
+    SELECT_HELPER(NAME, &macro_tap SETUP_BINDINGS, SELECTION_BINDING, \
+        /* No CLEANUP */)
+
+/* Select line start Macro helper */
+#define SELECT_LINE_START_MACRO(NAME, SETUP_BINDINGS, SELECTION_BINDING, \
+                                CLEANUP_BINDINGS) \
+    SELECT_HELPER(NAME, &macro_tap SETUP_BINDINGS, SELECTION_BINDING, \
+        &macro_tap CLEANUP_BINDINGS)
+
+/* Select word continue Macro helper */
+#define SELECT_WORD_CONT_MACRO(NAME, SELECTION_BINDING) \
+    SELECT_HELPER(NAME, /* No SETUP */, SELECTION_BINDING, /* No CLEANUP */)
+
+/* Select line continue Macro helper */
+#define SELECT_LINE_CONT_MACRO(NAME, SELECTION_BINDING, CLEANUP_BINDINGS) \
+    SELECT_HELPER(NAME, /* No SETUP */, SELECTION_BINDING, \
+        &macro_tap CLEANUP_BINDINGS)
+
+/* Movement, jumping and selection helper macros */
+#define MAC_WF   LA(RIGHT)              /* Jump forward a word on Mac */
+#define MAC_WB   LA(LEFT)               /* Jump backward a word on Mac */
+#define MAC_HOME LG(LEFT)               /* Jump to start of line on Mac */
+#define PC_WF    LC(RIGHT)              /* Jump forward a word on PC */
+#define PC_WB    LC(LEFT)               /* Jump backward a word on PC */
+#define PC_HOME  HOME                   /* Jump to start of line on PC */
+#define SEL(MOVEMENT) &kp LS(MOVEMENT)  /* Select text */
+
+/* Jump to start or end of word regardless of cursor position */
+#define MAC_START_OF_WD &kp MAC_WF &kp MAC_WB
+#define MAC_END_OF_WD &kp MAC_WB &kp MAC_WF
+#define PC_START_OF_WD &kp PC_WF &kp PC_WB
+#define PC_END_OF_WD &kp PC_WB &kp PC_WF
+
+/* We use LG(LEFT) / HOME twice to avoid an issue with IDEs being too smart and
+   placing the cursor after the indenting whitespace */
+#define MAC_START_OF_LN &kp MAC_HOME &kp MAC_HOME
+#define MAC_START_OF_NEXT_LN &kp DOWN &kp MAC_HOME &kp MAC_HOME
+#define MAC_SEL_START_OF_LN SEL(MAC_HOME) SEL(MAC_HOME)
+#define PC_START_OF_LN &kp PC_HOME &kp PC_HOME
+#define PC_START_OF_NEXT_LN &kp DOWN &kp PC_HOME &kp PC_HOME
+#define PC_SEL_START_OF_LN SEL(PC_HOME) SEL(PC_HOME)
+
+/* Word select Macros for Mac */
+SELECT_WORD_START_MACRO(sel_wd_fwd_mac, MAC_START_OF_WD, SEL(MAC_WF))
+SELECT_WORD_START_MACRO(sel_wd_bwd_mac, MAC_END_OF_WD, SEL(MAC_WB))
+SELECT_WORD_CONT_MACRO(cont_sel_wd_fwd_mac, SEL(MAC_WF))
+SELECT_WORD_CONT_MACRO(cont_sel_wd_bwd_mac, SEL(MAC_WB))
+
+/* Word select Macros for PC */
+SELECT_WORD_START_MACRO(sel_wd_fwd_pc, PC_START_OF_WD, SEL(PC_WF))
+SELECT_WORD_START_MACRO(sel_wd_bwd_pc, PC_END_OF_WD, SEL(PC_WB))
+SELECT_WORD_CONT_MACRO(cont_sel_wd_fwd_pc, SEL(PC_WF))
+SELECT_WORD_CONT_MACRO(cont_sel_wd_bwd_pc, SEL(PC_WB))
+
+/* Line select Macros for Mac */
+SELECT_LINE_START_MACRO(sel_ln_fwd_mac, \
+    MAC_START_OF_LN, SEL(DOWN), MAC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(sel_ln_bwd_mac, \
+    MAC_START_OF_NEXT_LN, SEL(UP), MAC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(cont_sel_ln_fwd_mac, SEL(DOWN), MAC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(cont_sel_ln_bwd_mac, SEL(UP), MAC_SEL_START_OF_LN)
+
+/* Line select Macros for PC */
+SELECT_LINE_START_MACRO(sel_ln_fwd_pc, \
+    PC_START_OF_LN, SEL(DOWN), PC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(sel_ln_bwd_pc, \
+    PC_START_OF_NEXT_LN, SEL(UP), PC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(cont_sel_ln_fwd_pc, SEL(DOWN), PC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(cont_sel_ln_bwd_pc, SEL(UP), PC_SEL_START_OF_LN)
+
+#define SEL_WF &sel_wd_fwd_mac;
+#define SEL_WB &sel_wd_bwd_mac;
+#define SEL_LF &sel_ln_fwd_mac;
+#define SEL_LB &sel_ln_bwd_mac;

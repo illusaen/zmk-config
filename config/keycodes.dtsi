@@ -9,7 +9,15 @@
 
 #define LAUNCHER &kp LC(SPACE)
 #define SCREENSHOT &kp LG(LC(LS(N4)))
-#define CMNT &kp LC(SLASH)
+#define CMNT &kp LG(SLASH)
+
+#define CUT &kp LG(X)
+#define COPY &kp LG(C)
+#define PASTE &kp LG(V)
+#define SAVE &kp LG(S)
+#define UNDO &kp LG(Z)
+#define REDO &kp LG(Y)
+
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
