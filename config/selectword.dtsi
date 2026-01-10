@@ -1,5 +1,23 @@
 // https://github.com/bmijanovich/zmk-config/tree/main
 
+#define FAST_MACRO(NAME, BINDINGS) \
+    ZMKMACRO(NAME, \
+        tap-ms = <0>; \
+        wait-ms = <0>; \
+        bindings = <BINDINGS>; \
+    )
+
+#define STATE_TRANSITION_WITH_EXIT(NAME, ENTRY, ACTION_BINDING, EXIT, \
+                                   SL_BEHAVIOR, NEXT_STATE_LAYER) \
+    FAST_MACRO(NAME, \
+        ENTRY  /* Optional setup, pass &macro_tap &... */ \
+        &macro_press ACTION_BINDING  /* Main action */ \
+        &macro_pause_for_release  /* Hold for repeating key press */ \
+        &macro_release ACTION_BINDING \
+        EXIT \
+        &macro_tap SL_BEHAVIOR NEXT_STATE_LAYER  /* Move to next state */ \
+    )
+
 #define SELECT_HELPER(NAME, SETUP, SELECTION_BINDING, CLEANUP) \
     STATE_TRANSITION_WITH_EXIT(NAME, SETUP, SELECTION_BINDING, CLEANUP, \
         &sl_select_cont, SELECT_CONT_SL)
