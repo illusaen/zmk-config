@@ -1,29 +1,68 @@
-/* Magic-shift & auto-layers */
+#include <behaviors/num_word.dtsi>
 
-// Tap: repeat after alpha, else sticky-shift |
-// Shift + tap/ double-tap: caps-word | Hold: shift.
-#define MAGIC_SHIFT &magic_shift LSHFT 0
-ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>;
-             flavor = "balanced"; tapping-term-ms = <200>;
-             quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_MOD_MORPH(magic_shift_tap, bindings = <&shift_repeat>, <&caps_word>;
-              mods = <(MOD_LSFT)>;)
-ZMK_ADAPTIVE_KEY(
-    shift_repeat, bindings = <&sk LSHFT>;
-    repeat {
-      trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
-      bindings = <&key_repeat>;
-      max-prior-idle-ms = <1200>;
-      strict-modifiers;
-    };)
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
 
+/ {
+  behaviors {
+    caps_word_custom: caps_word_custom {
+      compatible = "zmk,behavior-auto-layer";
+      #binding-cells = <1>;
+      continue-list = <SLASH BSPC DEL UNDER>;
+      ignore-alphas;
+      ignore-numbers;
+    };
 
-ZMK_AUTO_LAYER(space_under, continue-list = <UNDER BSPC DEL>; ignore-alphas;)
-ZMK_MACRO(case_cap, bindings = <&caps_word &space_under CASE_UNDER>;)
-#define CASE_CAPS &case_cap
+    swap: swapper {
+      compatible = "zmk,behavior-tri-state";
+      label = "SWAPPER";
+      #binding-cells = <0>;
+      bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+      ignored-key-positions = <1>;
+    };
 
-ZMK_AUTO_LAYER(space_slash, continue-list = <SLASH BSPC DEL>; ignore-alphas;)
-#define CASE_PATH &space_slash CASE_SLASH
+    sel_wf: select_word_forward {
+      compatible = "zmk,behavior-tri-state";
+      label = "SELECT_WORD_FORWARD";
+      #binding-cells = <0>;
+      bindings = <&kt LALT &kt LSHFT>, <&kp RIGHT>, <&kt LALT &kt LSHFT>;
+    };
+
+    sel_wb: select_word_backward {
+      compatible = "zmk,behavior-tri-state";
+      label = "SELECT_WORD_BACKWARD";
+      #binding-cells = <0>;
+      bindings = <&kt LALT &kt LSHFT>, <&kp LEFT>, <&kt LALT &kt LSHFT>;
+    };
+
+    sel_lf: select_line_forward {
+      compatible = "zmk,behavior-tri-state";
+      label = "SELECT_LINE_FORWARD";
+      #binding-cells = <0>;
+      bindings = <&kt LGUI &kt LSHFT>, <&kp DOWN>, <&kt LGUI &kt LSHFT>;
+    };
+
+    sel_lb: select_line_backward {
+      compatible = "zmk,behavior-tri-state";
+      label = "SELECT_LINE_BACKWARD";
+      #binding-cells = <0>;
+      bindings = <&kt LGUI &kt LSHFT>, <&kp UP>, <&kt LGUI &kt LSHFT>;
+    };
+  };
+};
+
+ZMK_MACRO(sel_wb_m, bindings = <&kp LA(LEFT) &kp LA(RIGHT)>;)
+ZMK_MACRO(sel_wf_m, bindings = <&kp LA(RIGHT) &kp LA(LEFT)>;)
+ZMK_MACRO(sel_lb_m, bindings = <&kp LG(LEFT) &kp LG(LEFT)>;)
+ZMK_MACRO(sel_lf_m, bindings = <&kp LG(RIGHT) &kp LG(RIGHT)>;)
+
+#define CASE_CAPS &caps_word_custom CASE_UNDER
+#define CASE_PATH &caps_under_word CASE_SLASH
+#define NUM_WORD &num_word NUM
+
+#define SWAP &swap &kp LS(TAB)
+#define SEL_WF &sel_wf_m
+#define SEL_WB &sel_wb_m
+#define SEL_LF &sel_lf_m
+#define SEL_LB &sel_lb_m

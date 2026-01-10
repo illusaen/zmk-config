@@ -18,7 +18,6 @@
 #define UNDO_ &kp LG(Z)
 #define REDO &kp LG(Y)
 
-
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
 ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE>;)
@@ -49,3 +48,29 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
+
+/* Custom behaviors */
+
+// Define mod-morph with a *single* mod trigger for less repetition.
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
+  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
+                bindings = <BINDING1>, <BINDING2>;)
+
+// Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
+SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
+SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
+
+// Tap: dot | Shift + tap: colon | Ctrl + shift + tap: >.
+SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
+SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
+
+// Tap: qmark | Shift + tap: excl.
+SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+
+// Tap: left bracket/brace | double-tap: right version.
+ZMK_TAP_DANCE(bracket, bindings = <&kp LBKT>, <&kp RBKT>;
+              tapping-term-ms = <200>;)
+ZMK_TAP_DANCE(brace, bindings = <&kp LBRC>, <&kp RBRC>;
+              tapping-term-ms = <200>;)
+ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
+              tapping-term-ms = <200>;)
