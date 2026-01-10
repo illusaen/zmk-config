@@ -1,27 +1,3 @@
-/* How long until the word and line selection feature times out */
-#define SELECT_TIMEOUT_MS 60000
-
-/* Sticky Layer Behavior definition helper */
-#define STICKY_LAYER_HELPER(NAME, TIMEOUT_MS, ...) \
-    ZMK_BEHAVIOR(NAME, \
-        compatible = "zmk,behavior-sticky-key"; \
-        #binding-cells = <1>; \
-        release-after-ms = <TIMEOUT_MS>;  /* Release if no key is pressed */ \
-        bindings = <&mo>; \
-        __VA_ARGS__ \
-    )
-
-/* Quick release Sticky Layer that does not ignore modifiers */
-#define STICKY_LAYER_NO_MODS(NAME, TIMEOUT_MS) \
-    STICKY_LAYER_HELPER(NAME, TIMEOUT_MS, \
-        quick-release;  /* Release as soon as another key is pressed */ \
-        /delete-property/ ignore-modifiers;  /* Mods release Sticky Layer */ \
-    )
-
-/* Quick release Sticky Layer Behavior that does not ignore modifiers using
-   defined timer for continuing the word and line selection feature */
-STICKY_LAYER_NO_MODS(sl_select_cont, SELECT_TIMEOUT_MS)
-
 /* Select Macro definition helper */
 #define SELECT_HELPER(NAME, SETUP, SELECTION_BINDING, CLEANUP) \
     STATE_TRANSITION_WITH_EXIT(NAME, SETUP, SELECTION_BINDING, CLEANUP, \
