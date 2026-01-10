@@ -11,11 +11,11 @@
 #define SCREENSHOT &kp LG(LC(LS(N4)))
 #define CMNT &kp LG(SLASH)
 
-#define CUT &kp LG(X)
-#define COPY &kp LG(C)
+#define CUT_ &kp LG(X)
+#define COPY_ &kp LG(C)
 #define PASTE &kp LG(V)
 #define SAVE &kp LG(S)
-#define UNDO &kp LG(Z)
+#define UNDO_ &kp LG(Z)
 #define REDO &kp LG(Y)
 
 
