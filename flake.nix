@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    just-flake.url = "github:illusaen/just-flake";
+    just-flake.url = "github:juspay/just-flake";
   };
 
   outputs =

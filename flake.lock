@@ -79,15 +79,15 @@
     },
     "just-flake": {
       "locked": {
-        "lastModified": 1741693878,
-        "narHash": "sha256-huka0TKXEsaZzXFFQL7p2RGkfQ/KJcnqn/Z5AH7Oc3g=",
-        "owner": "illusaen",
+        "lastModified": 1713316411,
+        "narHash": "sha256-NkJfU6H+6vgHkPtZ2ESbZ/h2wnsDQrZvB4vbdUIBx8Q=",
+        "owner": "juspay",
         "repo": "just-flake",
-        "rev": "68af681ee5b1d29f621eb4c045b872d5ae0a57fd",
+        "rev": "0e33952a4bcd16cd54ee3aba8111606c237d4526",
         "type": "github"
       },
       "original": {
-        "owner": "illusaen",
+        "owner": "juspay",
         "repo": "just-flake",
         "type": "github"
       }
