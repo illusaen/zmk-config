@@ -3,7 +3,7 @@ id: chocofi
 name: CHOCOFI
 type: shield
 url: https://github.com/pashutk/chocofi
-requires: [seeeduino_xiao_ble nice_nano_v2]
+requires: [seeeduino_xiao_ble, nice_nano_v2, pro_micro]
 features:
   - keys
 siblings:
