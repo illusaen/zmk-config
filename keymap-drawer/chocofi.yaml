@@ -1,0 +1,316 @@
+layout: {zmk_keyboard: chocofi}
+layers:
+  Base:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - {t: A, h: Alt}
+  - {t: S, h: Ctrl}
+  - {t: D, h: Gui}
+  - {t: F, h: Shift}
+  - G
+  - H
+  - {t: J, h: Shift}
+  - {t: K, h: Gui}
+  - {t: L, h: Ctrl}
+  - {t: '''', h: Alt}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - {t: ',', h: <, s: ;}
+  - {t: ., h: '>', s: ':'}
+  - {t: '?', s: '!'}
+  - {t: Num, h: sticky}
+  - Spc
+  - Nav
+  - Sym
+  - Enter
+  - Bspc
+  Nav:
+  - Esc
+  - Caps path
+  - Caps under
+  - Num word
+  - Tab
+  - Scrnsht
+  - Sel Wd Bwd
+  - {t: ↑, h: Doc start}
+  - Sel Wd Fwd
+  - {t: Del, h: Del wf}
+  - Alt
+  - Ctrl
+  - Gui
+  - Shift
+  - Sft+Tab
+  - Launch
+  - {t: ←, h: Home}
+  - {t: ↓, h: Doc end}
+  - {t: →, h: End}
+  - Enter
+  - Save
+  - Cut
+  - Copy
+  - Paste
+  - Undo
+  - Redo
+  - Sel Ln Bwd
+  - Comment
+  - Sel Ln Fwd
+  - {t: Bspc, h: Del wb}
+  - {type: trans}
+  - {type: trans}
+  - {type: held}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  Sym:
+  - Esc
+  - {t: '[', h: ']'}
+  - {t: '{', h: '}'}
+  - {t: (, h: )}
+  - '~'
+  - '`'
+  - )
+  - '}'
+  - {t: ']', right: '}'}
+  - {t: Del, h: Del wf}
+  - '-'
+  - '*'
+  - '='
+  - _
+  - $
+  - '#'
+  - Shift
+  - Gui
+  - Ctrl
+  - Alt
+  - +
+  - '|'
+  - '@'
+  - /
+  - '%'
+  - = () =>
+  - \
+  - '&'
+  - =>
+  - ->
+  - Bspc
+  - {type: trans}
+  - {type: trans}
+  - {type: held}
+  - {type: trans}
+  - {type: trans}
+  Num:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - {t: '-', h: Alt}
+  - {t: '*', h: Ctrl}
+  - {t: '=', h: Gui}
+  - {t: /, h: Shift}
+  - $
+  - CANCEL
+  - Shift
+  - Gui
+  - Ctrl
+  - Alt
+  - {type: trans}
+  - '#'
+  - +
+  - /
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - ','
+  - .
+  - {type: trans}
+  - {t: Num, h: sticky, type: held}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  Fn:
+  - F12
+  - F7
+  - F8
+  - F9
+  - Boot
+  - Studio
+  - $$mdi:skip-backward$$
+  - $$mdi:volume-high$$
+  - $$mdi:skip-forward$$
+  - $$mdi:play-pause$$
+  - {t: F11, h: Alt}
+  - {t: F4, h: Ctrl}
+  - {t: F5, h: Gui}
+  - {t: F6, h: Shift}
+  - Swap
+  - Sft+Tab
+  - {t: PgUp, h: Shift}
+  - {t: '$$mdi:volume-medium$$', h: Gui}
+  - {t: PgDn, h: Ctrl}
+  - {t: PAUSE BREAK, h: Alt}
+  - F10
+  - F1
+  - F2
+  - F3
+  - CANCEL
+  - {type: trans}
+  - {type: trans}
+  - $$mdi:volume-off$$
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: held}
+  - {type: held}
+  - {type: trans}
+  - {type: trans}
+  Casemode_Under:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - {t: A, h: Alt}
+  - {t: S, h: Ctrl}
+  - {t: D, h: Gui}
+  - {t: F, h: Shift}
+  - G
+  - H
+  - {t: J, h: Shift}
+  - {t: K, h: Gui}
+  - {t: L, h: Ctrl}
+  - {t: '''', h: Alt}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - {t: ',', h: <, s: ;}
+  - {t: ., h: '>', s: ':'}
+  - {t: '?', s: '!'}
+  - CANCEL
+  - _
+  - CANCEL
+  - Sym
+  - Enter
+  - Bspc
+  Casemode_Path:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - {t: A, h: Alt}
+  - {t: S, h: Ctrl}
+  - {t: D, h: Gui}
+  - {t: F, h: Shift}
+  - G
+  - H
+  - {t: J, h: Shift}
+  - {t: K, h: Gui}
+  - {t: L, h: Ctrl}
+  - {t: '''', h: Alt}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - {t: ',', h: <, s: ;}
+  - {t: ., h: '>', s: ':'}
+  - {t: '?', s: '!'}
+  - CANCEL
+  - /
+  - CANCEL
+  - Sym
+  - Enter
+  - Bspc
+combos:
+- p: [1, 2]
+  k: Esc
+  l: [Base, Nav, Num]
+- p: [3, 4]
+  k: Boot
+  l: [Nav]
+- p: [1, 11]
+  k: '@'
+  l: [Base, Nav, Num]
+- p: [2, 12]
+  k: '#'
+  l: [Base, Nav, Num]
+- p: [3, 13]
+  k: $
+  l: [Base, Nav, Num]
+- p: [4, 14]
+  k: '%'
+  l: [Base, Nav, Num]
+- p: [11, 21]
+  k: '`'
+  l: [Base, Nav, Num]
+- p: [12, 22]
+  k: \
+  l: [Base, Nav, Num]
+- p: [13, 23]
+  k: '='
+  l: [Base, Nav, Num]
+- p: [14, 24]
+  k: '~'
+  l: [Base, Nav, Num]
+- p: [5, 15]
+  k: ^
+  l: [Base, Nav, Num]
+- p: [6, 16]
+  k: +
+  l: [Base, Nav, Num]
+- p: [7, 17]
+  k: '*'
+  l: [Base, Nav, Num]
+- p: [8, 18]
+  k: '&'
+  l: [Base, Nav, Num]
+- p: [15, 25]
+  k: _
+  l: [Base, Nav, Num]
+- p: [16, 26]
+  k: '-'
+  l: [Base, Nav, Num]
+- p: [17, 27]
+  k: /
+  l: [Base, Nav, Num]
+- p: [18, 28]
+  k: '|'
+  l: [Base, Nav, Num]
