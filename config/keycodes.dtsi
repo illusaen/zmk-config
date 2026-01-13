@@ -1,11 +1,19 @@
 #define BRK  PAUSE_BREAK
-#define EQUL EQUAL
 #define MIN  MINUS
 #define CRT  CARET
 #define PUP  PG_UP
 #define PDN  PG_DN
 #define VUP  C_VOL_UP
 #define VDN  C_VOL_DN
+
+#define MUTE &kp C_MUTE
+#define PLAY_P &kp C_PP
+#define PREV &kp C_PREV
+#define NEXT &kp C_NEXT
+
+#define BOOT &bootloader
+#define STUDIO &studio_unlock
+#define CANCEL &kp K_CANCEL
 
 #define LAUNCHER &kp LC(SPACE)
 #define SCREENSHOT &kp LG(LC(N4))
@@ -66,11 +74,3 @@ SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
 // Tap: qmark | Shift + tap: excl.
 SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
-
-// Tap: left bracket/brace | double-tap: right version.
-ZMK_TAP_DANCE(bracket, bindings = <&kp LBKT>, <&kp RBKT>;
-              tapping-term-ms = <200>;)
-ZMK_TAP_DANCE(brace, bindings = <&kp LBRC>, <&kp RBRC>;
-              tapping-term-ms = <200>;)
-ZMK_TAP_DANCE(paren, bindings = <&kp LPAR>, <&kp RPAR>;
-              tapping-term-ms = <200>;)

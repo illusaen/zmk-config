@@ -1,2 +1,1 @@
-# See flake.nix (just-flake)
-import 'just-flake.just'
+/nix/store/9xxnp3g22zfd0cyd5gzs4l1g4r5bvvhg-justfile

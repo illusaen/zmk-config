@@ -59,11 +59,14 @@
           zephyr = zephyr-nix.packages.${system};
         in
         {
-          just-flake.features = {
-            treefmt.enable = true;
-            zmk = {
-              enable = true;
-              justfile = ./zmk-just;
+          just-flake = {
+            commonFileName = "justfile";
+            features = {
+              treefmt.enable = true;
+              zmk = {
+                enable = true;
+                justfile = ./zmk-just;
+              };
             };
           };
           treefmt = {
