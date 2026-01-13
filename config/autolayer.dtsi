@@ -19,50 +19,46 @@
       label = "SWAPPER";
       #binding-cells = <0>;
       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-      ignored-key-positions = <1>;
     };
+  };
 
+  tri-state {
     sel_wf: select_word_forward {
       compatible = "zmk,behavior-tri-state";
       label = "SELECT_WORD_FORWARD";
       #binding-cells = <0>;
-      bindings = <&kt LALT &kt LSHFT>, <&kp RIGHT>, <&kt LALT &kt LSHFT>;
+      bindings = <&kp LA(RIGHT) &kp LA(LEFT) &kt LALT &kt LSHFT>, <&kp RIGHT>, <&kt LALT &kt LSHFT>;
     };
 
     sel_wb: select_word_backward {
       compatible = "zmk,behavior-tri-state";
       label = "SELECT_WORD_BACKWARD";
       #binding-cells = <0>;
-      bindings = <&kt LALT &kt LSHFT>, <&kp LEFT>, <&kt LALT &kt LSHFT>;
+      bindings = <&kp LA(LEFT) &kp LA(RIGHT) &kt LALT &kt LSHFT>, <&kp LEFT>, <&kt LALT &kt LSHFT>;
     };
 
     sel_lf: select_line_forward {
       compatible = "zmk,behavior-tri-state";
       label = "SELECT_LINE_FORWARD";
       #binding-cells = <0>;
-      bindings = <&kt LGUI &kt LSHFT>, <&kp DOWN>, <&kt LGUI &kt LSHFT>;
+      bindings = <&kp LG(RIGHT) &kp LG(RIGHT) &kt LGUI &kt LSHFT>, <&kp DOWN>, <&kt LGUI &kt LSHFT>;
     };
 
     sel_lb: select_line_backward {
       compatible = "zmk,behavior-tri-state";
       label = "SELECT_LINE_BACKWARD";
       #binding-cells = <0>;
-      bindings = <&kt LGUI &kt LSHFT>, <&kp UP>, <&kt LGUI &kt LSHFT>;
+      bindings = <&kp LG(LEFT) &kp LG(LEFT) &kt LGUI &kt LSHFT>, <&kp UP>, <&kt LGUI &kt LSHFT>;
     };
   };
 };
-
-ZMK_MACRO(sel_wb_m, bindings = <&kp LA(LEFT) &kp LA(RIGHT)>;)
-ZMK_MACRO(sel_wf_m, bindings = <&kp LA(RIGHT) &kp LA(LEFT)>;)
-ZMK_MACRO(sel_lb_m, bindings = <&kp LG(LEFT) &kp LG(LEFT)>;)
-ZMK_MACRO(sel_lf_m, bindings = <&kp LG(RIGHT) &kp LG(RIGHT)>;)
 
 #define CASE_CAPS &caps_word_custom CASE_UNDER
 #define CASE_PATH &caps_word_custom CASE_SLASH
 #define NUM_WORD &num_word NUM
 
 #define SWAP &swap
-#define SEL_WF &sel_wf_m &sel_wf
-#define SEL_WB &sel_wb_m &sel_wb
-#define SEL_LF &sel_lf_m &sel_lf
-#define SEL_LB &sel_lb_m &sel_lb
+#define SEL_WF &sel_wf
+#define SEL_WB &sel_wb
+#define SEL_LF &sel_lf
+#define SEL_LB &sel_lb

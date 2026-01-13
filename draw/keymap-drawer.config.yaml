@@ -1,9 +1,11 @@
 parse_config:
   zmk_additional_includes:
     - "modules/zmk/helpers/include"
+    - "zmk-helpers/include"
 
   zmk_preamble: |
     #include <zmk-helpers/key-labels/totem.h>
+    #include <zmk-helpers/key-labels/36.h>
     #define CONFIG_WIRELESS
 
   raw_binding_map:
@@ -30,8 +32,10 @@ parse_config:
     "&js_interp": "`${}`"
     "&dbl_arrow": =>
     "&sgl_arrow": ->
-    "&sel_word": Sel Word
-    "&sel_word_bwd": Sel Wd Bd
+    "SEL_WB": Sel Word Bwd
+    "SEL_WF": Sel Word Fwd
+    "SEL_LB": Sel Line Bwd
+    "SEL_LF": Sel Line Fwd
 
     "&kp LC(A)": Select All
     "&kp LC(V)": Paste

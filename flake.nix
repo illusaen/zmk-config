@@ -18,7 +18,7 @@
 
     # Zephyr sdk and toolchain.
     zephyr-nix = {
-      url = "github:illusaen/zephyr-nix";
+      url = "github:nix-community/zephyr-nix";
       inputs.zephyr.follows = "zephyr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -57,7 +57,6 @@
         }:
         let
           zephyr = zephyr-nix.packages.${system};
-          keymap_drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix { };
         in
         {
           just-flake.features = {
@@ -103,13 +102,12 @@
             ];
             packages = with pkgs; [
               cmake
-              dtc
               ninja
               python313Packages.yq
-              keymap_drawer
+              keymap-drawer
               zephyr.pythonEnv
               zephyr.hosttools-nix
-              (zephyr.sdk-0_16.override { targets = [ "arm-zephyr-eabi" ]; })
+              (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
             ];
           };
         };

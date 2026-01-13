@@ -1,6 +1,11 @@
 default:
     @just --list --unsorted
 
+help:
+    @echo "After pulling from git, run \"just init\" first."
+    @echo "just build <board name>|all (i.e. totem|all)."
+    @echo "uf2 files are in {{ out }}."
+
 config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
@@ -84,9 +89,9 @@ clean-nix:
 draw $board:
     #!/usr/bin/env bash
     set -euo pipefail
-    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/$board.keymap" --virtual-layers Combos > "{{ draw }}/$board.yaml"
+    keymap -c "{{ draw }}/keymap-drawer.config.yaml" parse -z "{{ config }}/$board.keymap" --virtual-layers Combos > "{{ draw }}/$board.yaml"
     yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/$board.yaml"
-    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$board.yaml" -k "$board" >"{{ draw }}/$board.svg"
+    keymap -c "{{ draw }}/keymap-drawer.config.yaml" draw "{{ draw }}/$board.yaml" -k "$board" >"{{ draw }}/$board.svg"
 
 # initialize west
 init:
