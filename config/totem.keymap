@@ -90,9 +90,9 @@ ZMK_BASE_LAYER(Nav,
 
 ZMK_BASE_LAYER(Sym,
 //              ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
-                  &kp GRAVE        &bracket         &brace           &paren           &kp AMPS       ,   &kp EXCL         &kp TILDE        CMNT             ___              NAV_DEL        ,
+                  &kp GRAVE        &kp LBKT         &kp LBRC         &kp LPAR         &kp AMPS       ,   &kp EXCL         &kp TILDE        CMNT             ___              NAV_DEL        ,
 //              ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤
-                  &hml LALT MIN    &hml LCTRL PIPE  &hml LGUI FSLH   &hml LSHFT EQUAL  &kp DLLR       ,   &qexcl           &hmr RSHFT AT    &hmr LGUI CRT    &hmr LCTRL PLUS  &hmr LALT RET  ,
+                  &hml LALT MIN    &hml LCTRL PIPE  &hml LGUI FSLH   &hml LSHFT EQUAL &kp DLLR       ,   &qexcl           &hmr RSHFT AT    &hmr LGUI CRT    &hmr LCTRL PLUS  &hmr LALT RET  ,
 //╭─────────────├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤────────────────╮
     ___           &kp BSLH         &kp PRCNT        &kp HASH         &kp UNDER        &kp ASTRK      ,   &js_fn           &js_interp       &dbl_arrow       &sgl_arrow       NAV_BSPC         ___            ,
 //╰─────────────┴────────────────┴────────────────┼────────────────┴────────────────┴────────────────┤ ├────────────────┼────────────────┴────────────────┼────────────────┴────────────────┴────────────────╯
