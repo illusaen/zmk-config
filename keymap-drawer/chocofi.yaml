@@ -1,6 +1,7 @@
 layout: {zmk_keyboard: chocofi}
 layers:
   Base:
+  - {type: trans}
   - Q
   - W
   - E
@@ -11,6 +12,8 @@ layers:
   - I
   - O
   - P
+  - {type: trans}
+  - {type: trans}
   - {t: A, h: Alt}
   - {t: S, h: Ctrl}
   - {t: D, h: Gui}
@@ -21,6 +24,8 @@ layers:
   - {t: K, h: Gui}
   - {t: L, h: Ctrl}
   - {t: '''', h: Alt}
+  - {type: trans}
+  - {type: trans}
   - Z
   - X
   - C
@@ -31,6 +36,7 @@ layers:
   - {t: ',', h: <, s: ;}
   - {t: ., h: '>', s: ':'}
   - {t: '?', s: '!'}
+  - {type: trans}
   - {t: Num, h: sticky}
   - Spc
   - Nav
@@ -38,6 +44,7 @@ layers:
   - Enter
   - Bspc
   Nav:
+  - {type: trans}
   - Esc
   - Caps path
   - Caps under
@@ -48,6 +55,8 @@ layers:
   - {t: ↑, h: Doc start}
   - Sel Wd Fwd
   - {t: Del, h: Del wf}
+  - {type: trans}
+  - {type: trans}
   - Alt
   - Ctrl
   - Gui
@@ -58,6 +67,8 @@ layers:
   - {t: ↓, h: Doc end}
   - {t: →, h: End}
   - Enter
+  - {type: trans}
+  - {type: trans}
   - Save
   - Cut
   - Copy
@@ -70,11 +81,13 @@ layers:
   - {t: Bspc, h: Del wb}
   - {type: trans}
   - {type: trans}
+  - {type: trans}
   - {type: held}
   - {type: trans}
   - {type: trans}
   - {type: trans}
   Sym:
+  - {type: trans}
   - Esc
   - {t: '[', h: ']'}
   - {t: '{', h: '}'}
@@ -85,6 +98,8 @@ layers:
   - '}'
   - {t: ']', right: '}'}
   - {t: Del, h: Del wf}
+  - {type: trans}
+  - {type: trans}
   - '-'
   - '*'
   - '='
@@ -95,6 +110,8 @@ layers:
   - Gui
   - Ctrl
   - Alt
+  - {type: trans}
+  - {type: trans}
   - +
   - '|'
   - '@'
@@ -105,6 +122,7 @@ layers:
   - '&'
   - =>
   - ->
+  - {type: trans}
   - Bspc
   - {type: trans}
   - {type: trans}
@@ -112,6 +130,7 @@ layers:
   - {type: trans}
   - {type: trans}
   Num:
+  - {type: trans}
   - '1'
   - '2'
   - '3'
@@ -122,6 +141,8 @@ layers:
   - '8'
   - '9'
   - '0'
+  - {type: trans}
+  - {type: trans}
   - {t: '-', h: Alt}
   - {t: '*', h: Ctrl}
   - {t: '=', h: Gui}
@@ -133,6 +154,8 @@ layers:
   - Ctrl
   - Alt
   - {type: trans}
+  - {type: trans}
+  - {type: trans}
   - '#'
   - +
   - /
@@ -142,6 +165,7 @@ layers:
   - ','
   - .
   - {type: trans}
+  - {type: trans}
   - {t: Num, h: sticky, type: held}
   - {type: trans}
   - {type: trans}
@@ -149,6 +173,7 @@ layers:
   - {type: trans}
   - {type: trans}
   Fn:
+  - {type: trans}
   - F12
   - F7
   - F8
@@ -159,6 +184,8 @@ layers:
   - $$mdi:volume-high$$
   - $$mdi:skip-forward$$
   - $$mdi:play-pause$$
+  - {type: trans}
+  - {type: trans}
   - {t: F11, h: Alt}
   - {t: F4, h: Ctrl}
   - {t: F5, h: Gui}
@@ -169,6 +196,8 @@ layers:
   - {t: '$$mdi:volume-medium$$', h: Gui}
   - {t: PgDn, h: Ctrl}
   - {t: PAUSE BREAK, h: Alt}
+  - {type: trans}
+  - {type: trans}
   - F10
   - F1
   - F2
@@ -181,11 +210,13 @@ layers:
   - {type: trans}
   - {type: trans}
   - {type: trans}
+  - {type: trans}
   - {type: held}
   - {type: held}
   - {type: trans}
   - {type: trans}
   Casemode_Under:
+  - {type: trans}
   - Q
   - W
   - E
@@ -196,6 +227,8 @@ layers:
   - I
   - O
   - P
+  - {type: trans}
+  - {type: trans}
   - {t: A, h: Alt}
   - {t: S, h: Ctrl}
   - {t: D, h: Gui}
@@ -206,6 +239,8 @@ layers:
   - {t: K, h: Gui}
   - {t: L, h: Ctrl}
   - {t: '''', h: Alt}
+  - {type: trans}
+  - {type: trans}
   - Z
   - X
   - C
@@ -216,6 +251,7 @@ layers:
   - {t: ',', h: <, s: ;}
   - {t: ., h: '>', s: ':'}
   - {t: '?', s: '!'}
+  - {type: trans}
   - CANCEL
   - _
   - CANCEL
@@ -223,6 +259,7 @@ layers:
   - Enter
   - Bspc
   Casemode_Path:
+  - {type: trans}
   - Q
   - W
   - E
@@ -233,6 +270,8 @@ layers:
   - I
   - O
   - P
+  - {type: trans}
+  - {type: trans}
   - {t: A, h: Alt}
   - {t: S, h: Ctrl}
   - {t: D, h: Gui}
@@ -243,6 +282,8 @@ layers:
   - {t: K, h: Gui}
   - {t: L, h: Ctrl}
   - {t: '''', h: Alt}
+  - {type: trans}
+  - {type: trans}
   - Z
   - X
   - C
@@ -253,6 +294,7 @@ layers:
   - {t: ',', h: <, s: ;}
   - {t: ., h: '>', s: ':'}
   - {t: '?', s: '!'}
+  - {type: trans}
   - CANCEL
   - /
   - CANCEL
