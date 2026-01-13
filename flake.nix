@@ -12,7 +12,7 @@
 
     zephyr = {
       # This pins the version of Zephyr used by ZMK.
-      url = "github:zmkfirmware/zephyr/v3.5.0+zmk-fixes";
+      url = "github:zmkfirmware/zephyr/v4.1.0+zmk-fixes";
       flake = false;
     };
 
