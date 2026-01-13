@@ -16,7 +16,7 @@
 #define PASTE &kp LG(V)
 #define SAVE &kp LG(S)
 #define UNDO_ &kp LG(Z)
-#define REDO &kp LG(Y)
+#define REDO &kp LG(LS(Z))
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)

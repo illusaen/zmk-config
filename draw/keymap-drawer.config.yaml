@@ -19,10 +19,6 @@ parse_config:
     "&bt BT_SEL 2": BT 3
     "&bt BT_SEL 3": BT 4
 
-    "&kp LC(INS)": Copy
-    "&kp LC(X)": Cut
-    "&kp LS(INS)": Paste
-
     "&kp LG(LC(LEFT))": Prev Desk
     "&kp LG(LC(RIGHT))": Next Desk
     "&kp LG(LC(LS(A)))": Pin App
@@ -32,20 +28,29 @@ parse_config:
     "&js_interp": "`${}`"
     "&dbl_arrow": =>
     "&sgl_arrow": ->
-    "SEL_WB": Sel Word Bwd
-    "SEL_WF": Sel Word Fwd
-    "SEL_LB": Sel Line Bwd
-    "SEL_LF": Sel Line Fwd
+    "SEL_WB": Sel Wd Bwd
+    "SEL_WF": Sel Wd Fwd
+    "SEL_LB": Sel Ln Bwd
+    "SEL_LF": Sel Ln Fwd
 
     "&kp LC(A)": Select All
+    "&kp LC(X)": Cut
+    "&kp LG(X)": Cut
+    "&kp LC(C)": Copy
+    "&kp LG(C)": Copy
     "&kp LC(V)": Paste
+    "&kp LG(V)": Paste
     "&kp LC(Z)": Undo
+    "&kp LG(Z)": Undo
     "&kp LS(LC(Z))": Redo
+    "&kp LG(LS(Z))": Redo
     "&kp LC(S)": Save
+    "&kp LG(S)": Save
     "&kp LC(SPACE)": Launch
     "&kp LG(LS(S))": Scrnsht
     "&kp LG(LC(N4))": Scrnsht
     "&kp LC(SLASH)": Comment
+    "&kp LG(SLASH)": Comment
 
     "&kp LA(S)": Cycle Wks
     "&kp LA(LEFT)": Prev Win
@@ -54,6 +59,17 @@ parse_config:
     "&kp LA(LS(N2))": Move Wks 2
     "&kp LC(LEFT)": Word Bwd
     "&kp LC(RIGHT)": Word Fd
+
+    "&kp LC(DEL)": Del wf
+    "&kp LC(BSPC)": Del wb
+
+    "&kp LC(HOME)": Doc start
+    "&kp LC(END)": Doc end
+
+    "&num_word NUM": Num word
+    "CASE_CAPS": Caps under
+    "CASE_PATH": Caps path
+    "SWAP": Swap
 
     "&copy_cut": { "t": "Copy", "h": "Cut" }
     "&comma_morph": { "t": ",", "s": ";", "h": "<" }
