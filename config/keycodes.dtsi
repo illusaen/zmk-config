@@ -5,18 +5,21 @@
 #define PDN  PG_DN
 #define VUP  C_VOL_UP
 #define VDN  C_VOL_DN
+#define AST  ASTRK
+#define EQU  EQUAL
 
 #define MUTE &kp C_MUTE
 #define PLAY_P &kp C_PP
 #define PREV &kp C_PREV
 #define NEXT &kp C_NEXT
+#define UNTAB &kp LS(TAB)
 
 #define BOOT &bootloader
 #define STUDIO &studio_unlock
 #define CANCEL &kp K_CANCEL
 
-#define LAUNCHER &kp LC(SPACE)
-#define SCREENSHOT &kp LG(LC(N4))
+#define LAUNCH &kp LC(SPACE)
+#define SSHOT &kp LG(LC(N4))
 #define CMNT &kp LG(SLASH)
 
 #define CUT_ &kp LG(X)
@@ -26,9 +29,9 @@
 #define UNDO_ &kp LG(Z)
 #define REDO &kp LG(LS(Z))
 
-ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT>;)
-ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT>;)
-ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE>;)
+ZMK_MACRO(dbl_a, bindings = <&kp EQUAL &kp GT>;)
+ZMK_MACRO(sgl_a, bindings = <&kp MINUS &kp GT>;)
+ZMK_MACRO(js_interp, bindings = <&kp GRAVE &kp DOLLAR &kp LBRC &kp RBRC &kp GRAVE &kp LEFT &kp LEFT>;)
 ZMK_MACRO(js_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp SPACE &kp LBRC>;)
 
 // Trigger tap-action on all interrupts.
@@ -65,11 +68,11 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
-SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
+SIMPLE_MORPH(comma_m, SFT, &kp COMMA, &comma_inner_morph)
 SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
 
 // Tap: dot | Shift + tap: colon | Ctrl + shift + tap: >.
-SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
+SIMPLE_MORPH(dot_m, SFT, &kp DOT, &dot_inner_morph)
 SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
 // Tap: qmark | Shift + tap: excl.

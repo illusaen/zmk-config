@@ -26,8 +26,8 @@ parse_config:
 
     "&js_fn": = () =>
     "&js_interp": "`${}`"
-    "&dbl_arrow": =>
-    "&sgl_arrow": ->
+    "&dbl_a": =>
+    "&sgl_a": ->
     "SEL_WB": Sel Wd Bwd
     "SEL_WF": Sel Wd Fwd
     "SEL_LB": Sel Ln Bwd
@@ -72,8 +72,8 @@ parse_config:
     "SWAP": Swap
 
     "&copy_cut": { "t": "Copy", "h": "Cut" }
-    "&comma_morph": { "t": ",", "s": ";", "h": "<" }
-    "&dot_morph": { "t": ".", "s": ":", "h": ">" }
+    "&comma_m": { "t": ",", "s": ";", "h": "<" }
+    "&dot_m": { "t": ".", "s": ":", "h": ">" }
     "&brace": { "t": "{", "h": "}" }
     "&bracket": { "t": "[", "h": "]" }
     "&paren": { "t": "(", "h": ")" }
