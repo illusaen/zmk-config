@@ -61,8 +61,8 @@ ZMK_MACRO(sel_lf_m, bindings = <&kp LG(RIGHT) &kp LG(RIGHT)>;)
 #define CASE_PATH &caps_word_custom CASE_SLASH
 #define NUM_WORD &num_word NUM
 
-#define SWAP &swap &kp LS(TAB)
-#define SEL_WF &sel_wf_m
-#define SEL_WB &sel_wb_m
-#define SEL_LF &sel_lf_m
-#define SEL_LB &sel_lb_m
+#define SWAP &swap
+#define SEL_WF &sel_wf_m &sel_wf
+#define SEL_WB &sel_wb_m &sel_wb
+#define SEL_LF &sel_lf_m &sel_lf
+#define SEL_LB &sel_lb_m &sel_lb

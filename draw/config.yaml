@@ -10,6 +10,7 @@ parse_config:
     "&sys_reset": Reset
     "&bootloader": Boot
     "&caps_word": Caps Word
+    "&studio_unlock": Studio
 
     "&bt BT_SEL 0": BT 1
     "&bt BT_SEL 1": BT 2
@@ -39,6 +40,7 @@ parse_config:
     "&kp LC(S)": Save
     "&kp LC(SPACE)": Launch
     "&kp LG(LS(S))": Scrnsht
+    "&kp LG(LC(N4))": Scrnsht
     "&kp LC(SLASH)": Comment
 
     "&kp LA(S)": Cycle Wks
@@ -48,7 +50,7 @@ parse_config:
     "&kp LA(LS(N2))": Move Wks 2
     "&kp LC(LEFT)": Word Bwd
     "&kp LC(RIGHT)": Word Fd
-    
+
     "&copy_cut": { "t": "Copy", "h": "Cut" }
     "&comma_morph": { "t": ",", "s": ";", "h": "<" }
     "&dot_morph": { "t": ".", "s": ":", "h": ">" }

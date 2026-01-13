@@ -81,12 +81,12 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 # parse & plot keymap
-draw:
+draw $board:
     #!/usr/bin/env bash
     set -euo pipefail
-    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/totem.keymap" --virtual-layers Combos > "{{ draw }}/base.yaml"
-    yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
-    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "totem" >"{{ draw }}/base.svg"
+    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/$board.keymap" --virtual-layers Combos > "{{ draw }}/$board.yaml"
+    yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/$board.yaml"
+    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$board.yaml" -k "$board" >"{{ draw }}/$board.svg"
 
 # initialize west
 init:

@@ -7,5 +7,6 @@ modules
 firmware
 zephyr
 zmk
-draw/base.yaml
-draw/base.svg
+draw/*.svg
+draw/chocofi.yaml
+draw/totem.yaml
