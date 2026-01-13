@@ -38,6 +38,7 @@
 #include "keycodes.dtsi"
 #include "autolayer.dtsi"
 #include "combos.dtsi"
+#include "leader.dtsi"
 
 /* Keymap */
 ZMK_CONDITIONAL_LAYER(sys, NAV SYM, FN) // NAV + SYM --> FN.
@@ -77,7 +78,7 @@ ZMK_BASE_LAYER(Sym,
 //├───────────┼───────────┼───────────┼───────────┼───────────┤ ├───────────┼───────────┼───────────┼───────────┼───────────┤
     &kp MIN     &kp AST     &kp EQUAL   &kp UNDER   &kp DLLR  ,   &kp HASH    &kp LSHFT   &kp LGUI    &kp LCTRL   &kp LALT  ,
 //|───────────┼───────────┼───────────┼───────────┼───────────┤ ├───────────┼───────────┼───────────┼───────────┼───────────┤
-    &kp PLUS    &kp PIPE    &kp AT      &kp FSLH    &kp PRCNT ,   &js_fn      &kp BSLH    &kp AMPS    &dbl_a      &sgl_a    ,
+    &kp PLUS    &kp PIPE    &kp AT      &kp FSLH    &kp PRCNT ,   ___         &kp BSLH    &kp AMPS    ___         ___       ,
 //╰───────────┴───────────┴───────────┼───────────┴───────────┤ ├───────────┼───────────┴───────────┼───────────┴───────────╯
                             &kp BSPC    ___         ___       ,   ___         ___         ___
 //                        ╰───────────┴───────────┴───────────╯ ╰───────────┴───────────┴───────────╯
