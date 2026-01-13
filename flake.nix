@@ -12,7 +12,7 @@
 
     zephyr = {
       # This pins the version of Zephyr used by ZMK.
-      url = "github:zmkfirmware/zephyr/v4.1.0+zmk-fixes";
+      url = "github:zmkfirmware/zephyr/v3.5.0+zmk-fixes";
       flake = false;
     };
 
@@ -107,7 +107,7 @@
               keymap-drawer
               zephyr.pythonEnv
               zephyr.hosttools-nix
-              (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
+              (zephyr.sdkFull-0_16.override { targets = [ "arm-zephyr-eabi" ]; })
             ];
           };
         };
