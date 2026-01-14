@@ -1,8 +1,8 @@
 name: Build firmware
 on:
   push:
-      branches:
-        - "totem-dongle"
+    branches:
+      - "totem-dongle"
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
