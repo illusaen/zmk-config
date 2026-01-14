@@ -106,7 +106,15 @@
             packages = with pkgs; [
               cmake
               ninja
-              yq-go
+              yq
+              (yq-go.overrideAttrs (oldAttrs: {
+                postInstall = ''
+                  # Run the original postInstall commands if they exist
+                  ${oldAttrs.postInstall or ""}
+                  # Move the executable to the desired new name
+                  mv $out/bin/yq $out/bin/yq-go
+                '';
+              }))
               keymap-drawer
               zephyr.pythonEnv
               zephyr.hosttools-nix

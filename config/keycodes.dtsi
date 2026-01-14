@@ -1,12 +1,9 @@
 #define BRK  PAUSE_BREAK
 #define MIN  MINUS
-#define CRT  CARET
 #define PUP  PG_UP
 #define PDN  PG_DN
 #define VUP  C_VOL_UP
 #define VDN  C_VOL_DN
-#define AST  ASTRK
-#define EQU  EQUAL
 
 #define MUTE &kp C_MUTE
 #define PLAY_P &kp C_PP
@@ -27,8 +24,6 @@
 #define COPY_ &kp LG(C)
 #define PASTE &kp LG(V)
 #define SAVE &kp LG(S)
-#define UNDO_ &kp LG(Z)
-#define REDO &kp LG(LS(Z))
 #define WORD_B &kp LA(LEFT)
 #define WORD_F &kp LA(RIGHT)
 
