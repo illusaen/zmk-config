@@ -85,13 +85,13 @@ SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 // Tap: copy | double-tap: cut.
-ZMK_TAP_DANCE(under_cancel, bindings = <&kp UNDER>, <&kp K_CANCEL>;
+ZMK_TAP_DANCE(under_cancel, bindings = <&kp UNDER>, <&kp K_CANCEL &kp SPACE>;
               tapping-term-ms = <200>;)
 
-ZMK_TAP_DANCE(slash_cancel, bindings = <&kp SLASH>, <&kp K_CANCEL>;
+ZMK_TAP_DANCE(slash_cancel, bindings = <&kp SLASH>, <&kp K_CANCEL &kp SPACE>;
               tapping-term-ms = <200>;)
 
-ZMK_TAP_DANCE(dash_cancel, bindings = <&kp MINUS>, <&kp K_CANCEL>;
+ZMK_TAP_DANCE(dash_cancel, bindings = <&kp MINUS>, <&kp K_CANCEL &kp SPACE>;
               tapping-term-ms = <200>;)
 
 #define UNDER_C &under_cancel
