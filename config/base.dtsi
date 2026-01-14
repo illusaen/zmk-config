@@ -6,12 +6,12 @@
 #include "zmk-helpers/helper.h"
 
 #define BASE        0
-#define NAV         1
-#define SYM         2
-#define NUM         3
-#define FN          4
-#define CASE_UNDER  5
-#define CASE_SLASH  6
+#define CASE_UNDER  1
+#define CASE_SLASH  2
+#define NAV         3
+#define SYM         4
+#define NUM         5
+#define FN          6
 
 #define XXX &none
 #define ___ &trans
