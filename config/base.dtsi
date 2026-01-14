@@ -1,0 +1,47 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include "zmk-helpers/helper.h"
+
+#define BASE        0
+#define NAV         1
+#define SYM         2
+#define NUM         3
+#define FN          4
+#define CASE_UNDER  5
+#define CASE_SLASH  6
+
+#define XXX &none
+#define ___ &trans
+#define QUICK_TAP_MS 75
+
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+&lt {
+  tapping-term-ms = <200>;
+  flavor = "balanced";
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+#include "hrm.dtsi"
+#include "keycodes.dtsi"
+#include "autolayer.dtsi"
+#include "leader.dtsi"
+#include "combos.dtsi"
+
+/* Keymap */
+ZMK_CONDITIONAL_LAYER(sys, NAV SYM, FN) // NAV + SYM --> FN.
+
+#ifndef ZMK_BASE_LAYER
+  #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+      ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+#endif
