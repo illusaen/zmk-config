@@ -1,4 +1,4 @@
-just-flake.just
+justfile
 .pre-commit-config.yaml
 .build
 .direnv
