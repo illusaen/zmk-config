@@ -19,6 +19,7 @@
       label = "SWAPPER";
       #binding-cells = <0>;
       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+      ignored-key-positions = <RM0>;
     };
   };
 };
