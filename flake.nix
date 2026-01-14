@@ -106,7 +106,7 @@
             packages = with pkgs; [
               cmake
               ninja
-              python313Packages.yq
+              yq-go
               keymap-drawer
               zephyr.pythonEnv
               zephyr.hosttools-nix
