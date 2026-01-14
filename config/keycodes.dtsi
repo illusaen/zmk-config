@@ -1,4 +1,3 @@
-// Keycode aliases
 #define BRK  PAUSE_BREAK
 #define MIN  MINUS
 #define CRT  CARET
@@ -29,6 +28,8 @@
 #define SAVE &kp LG(S)
 #define UNDO_ &kp LG(Z)
 #define REDO &kp LG(LS(Z))
+#define WORD_B &kp LA(LEFT)
+#define WORD_F &kp LA(RIGHT)
 
 ZMK_MACRO(dbl_a, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_a, bindings = <&kp MINUS &kp GT>;)

@@ -28,10 +28,6 @@ parse_config:
     "&js_interp": "`${}`"
     "&dbl_a": =>
     "&sgl_a": ->
-    "SEL_WB": Sel Wd Bwd
-    "SEL_WF": Sel Wd Fwd
-    "SEL_LB": Sel Ln Bwd
-    "SEL_LF": Sel Ln Fwd
 
     "&kp LC(A)": Select All
     "&kp LC(X)": Cut
