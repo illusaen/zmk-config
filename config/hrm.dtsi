@@ -21,11 +21,11 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
   MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
   
-#define HMLS &hml LSHIFT
+#define HMLS &hml LSHFT
 #define HMLG &hml LGUI
 #define HMLA &hml LALT
 #define HMLC &hml LCTRL
-#define HMRS &hmr RSHIFT
+#define HMRS &hmr RSHFT
 #define HMRG &hmr LGUI
 #define HMRA &hmr LALT
 #define HMRC &hmr LCTRL

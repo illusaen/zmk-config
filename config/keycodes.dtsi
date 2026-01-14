@@ -21,6 +21,7 @@
 #define LAUNCH &kp LC(SPACE)
 #define SSHOT &kp LG(LC(N4))
 #define CMNT &kp LG(SLASH)
+#define TERM &kp LC(LS(T))
 
 #define CUT_ &kp LG(X)
 #define COPY_ &kp LG(C)
@@ -82,3 +83,17 @@ SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
+
+// Tap: copy | double-tap: cut.
+ZMK_TAP_DANCE(under_cancel, bindings = <&kp UNDER>, <&kp K_CANCEL>;
+              tapping-term-ms = <200>;)
+
+ZMK_TAP_DANCE(slash_cancel, bindings = <&kp SLASH>, <&kp K_CANCEL>;
+              tapping-term-ms = <200>;)
+
+ZMK_TAP_DANCE(dash_cancel, bindings = <&kp MINUS>, <&kp K_CANCEL>;
+              tapping-term-ms = <200>;)
+
+#define UNDER_C &under_cancel
+#define SLASH_C &slash_cancel
+#define DASH_C &dash_cancel

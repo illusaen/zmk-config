@@ -9,7 +9,7 @@
     caps_word_custom: caps_word_custom {
       compatible = "zmk,behavior-auto-layer";
       #binding-cells = <1>;
-      continue-list = <SLASH BSPC DEL UNDER>;
+      continue-list = <SLASH BSPC DEL UNDER MINUS>;
       ignore-alphas;
       ignore-numbers;
     };
@@ -19,7 +19,7 @@
       label = "SWAPPER";
       #binding-cells = <0>;
       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-      ignored-key-positions = <RM0>;
+      ignored-key-positions = <LB0>;
     };
   };
 };
@@ -29,6 +29,9 @@ ZMK_MACRO(caps_word_custom_slash, bindings = <&caps_word &caps_word_custom CASE_
 
 #define CASE_CAPS &caps_word_custom_under
 #define CASE_PATH &caps_word_custom_slash
+#define WORD_UNDER &caps_word_custom CASE_UNDER
+#define WORD_PATH &caps_word_custom CASE_SLASH
+#define WORD_DASH &caps_word_custom CASE_DASH
 #define NUM_WORD &num_word NUM
 
 #define SWAP &swap

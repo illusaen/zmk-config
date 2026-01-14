@@ -29,7 +29,7 @@ parse_config:
     "&dbl_a": =>
     "&sgl_a": ->
 
-    "&kp LC(A)": Select All
+    "&kp LS(TAB)": Tab L
     "&kp LC(X)": Cut
     "&kp LG(X)": Cut
     "&kp LC(C)": Copy
@@ -42,30 +42,33 @@ parse_config:
     "&kp LG(LS(Z))": Redo
     "&kp LC(S)": Save
     "&kp LG(S)": Save
-    "&kp LC(SPACE)": Launch
-    "&kp LG(LS(S))": Scrnsht
-    "&kp LG(LC(N4))": Scrnsht
-    "&kp LC(SLASH)": Comment
-    "&kp LG(SLASH)": Comment
+    "&kp LC(SPACE)": $$tabler:zoom$$
+    "&kp LG(LS(S))": $$tabler:camera$$
+    "&kp LG(LC(N4))": $$tabler:camera$$
+    "&kp LC(SLASH)": //
+    "&kp LG(SLASH)": //
+    "&kp LC(LS(T))": $$tabler:terminal-2$$
 
-    "&kp LA(S)": Cycle Wks
-    "&kp LA(LEFT)": Prev Win
-    "&kp LA(RIGHT)": Next Win
-    "&kp LA(LS(N1))": Move Wks 1
-    "&kp LA(LS(N2))": Move Wks 2
-    "&kp LC(LEFT)": Word Bwd
-    "&kp LC(RIGHT)": Word Fd
+    "&kp LA(LEFT)": $$material:text_select_move_back_character$$
+    "&kp LA(RIGHT)": $$material:text_select_move_forward_character$$
 
-    "&kp LC(DEL)": Del wf
-    "&kp LC(BSPC)": Del wb
+    "&kp LC(DEL)": Del word
+    "&kp LC(BSPC)": Back word
 
-    "&kp LC(HOME)": Doc start
+    "&kp LC(HOME)": Doc home
     "&kp LC(END)": Doc end
 
     "&num_word NUM": Num word
-    "CASE_CAPS": Caps under
-    "CASE_PATH": Caps path
+    "CASE_CAPS": Caps _
+    "CASE_PATH": Caps /
     "SWAP": Swap
+    "CANCEL": Cancel
+    "WORD_PATH": Word /
+    "WORD_UNDER": Word _
+    "WORD_DASH": Word -
+    "UNDER_C": { "t": "_", "h": "Cancel" }
+    "SLASH_C": { "t": "/", "h": "Cancel" }
+    "DASH_C": { "t": "-", "h": "Cancel" }
 
     "&copy_cut": { "t": "Copy", "h": "Cut" }
     "&comma_m": { "t": ",", "s": ";", "h": "<" }
@@ -80,7 +83,7 @@ parse_config:
     "&smart_mouse": Smart Mouse
 
     "&hml LS(LALT)TAB": Tab
-    "&hm_combo_ldr": Leader
+    "&hm_combo_ldr": Lead
     "&hm_combo_ldrsh": Shift+Leader
     "&hm_combo_lpar": { "t": "(", "right": "<" }
     "&hm_combo_rpar": { "t": ")", "right": ">" }
@@ -107,41 +110,37 @@ parse_config:
 
   zmk_combos:
     combo_cut: { align: bottom, o: 0.15 }
-    combo_ldrsh: { align: top, o: 1.35 }
-
-    combo_lt: { hidden: true }
-    combo_gt: { hidden: true }
-    combo_lbrc: { hidden: true }
-    combo_rbrc: { hidden: true }
+    combo_cancel: { align: top, o: 1.35 }
+    combo_numword: { align: top, o: 0.75 }
+    combo_save: { align: bottom, o: 0.75 }
 
   zmk_keycode_map:
     # custom mappings
-    LALT: Alt
-    RALT: Alt
-    LCTRL: Ctrl
-    RCTRL: Ctrl
-    LGUI: Gui
-    RGUI: Gui
-    LSHFT: Shift
-    RSHFT: Shift
+    LALT: $$mdi:apple-keyboard-option$$
+    RALT: $$mdi:apple-keyboard-option$$
+    LCTRL: $$mdi:apple-keyboard-control$$
+    RCTRL: $$mdi:apple-keyboard-control$$
+    LGUI: $$mdi:apple-keyboard-command$$
+    RGUI: $$mdi:apple-keyboard-command$$
+    LSHFT: $$mdi:apple-keyboard-shift$$
+    RSHFT: $$mdi:apple-keyboard-shift$$
 
-    BSPC: Bspc
-    DEL: Del
-    ESC: Esc
-    RET: Enter
-    SPACE: Spc
+    BSPC: $$material:backspace$$
+    DEL: $$tabler:http-delete$$
+    ESC: $$mdi:keyboard-esc$$
+    RET: $$material:keyboard_return$$
+    SPACE: $$material:space_bar$$
     TAB: Tab
 
-    PG_UP: PgUp
-    PG_DN: PgDn
-    INS: Ins
-    HOME: Home
-    END: End
+    PG_UP: $$phosphor:bold/file-arrow-up$$
+    PG_DN: $$phosphor:bold/file-arrow-down$$
+    HOME: $$material:keyboard_tab_rtl$$
+    END: $$material:keyboard_tab$$
 
-    UP: ↑
-    DOWN: ↓
-    LEFT: ←
-    RIGHT: →
+    UP: $$fa:solid/arrow-up$$
+    DOWN: $$fa:solid/arrow-down$$
+    LEFT: $$fa:solid/arrow-left$$
+    RIGHT: $$fa:solid/arrow-right$$
 
     C_MUTE: $$mdi:volume-off$$
     C_PP: $$mdi:play-pause$$
@@ -190,6 +189,7 @@ parse_config:
     NON_US_BSLH: "|"
     NON_US_HASH: "#"
     NUHS: "#"
+    PAUSE_BREAK: "Break"
     PERCENT: "%"
     PERIOD: .
     PIPE: "|"
@@ -218,5 +218,15 @@ parse_config:
 
 draw_config:
   append_colon_to_layer_header: false
+  glyph_tap_size: 18
+  glyph_hold_size: 15
   dark_mode: auto
   footer_text: "illusaen/zmk-config"
+  svg_extra_style: |
+    svg.keymap {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    .trans {
+      fill: #bbb !important;
+    }
+

@@ -8,9 +8,10 @@
 #define BASE        0
 #define CASE_UNDER  1
 #define CASE_SLASH  2
-#define NAV         3
-#define NUM         4
-#define FN          5
+#define CASE_DASH   3
+#define NAV         4
+#define NUM         5
+#define FN          6
 
 #define XXX &none
 #define ___ &trans

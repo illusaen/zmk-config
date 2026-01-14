@@ -6,7 +6,9 @@ include:
   - board: xiao_ble
     shield: totem_dongle
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    cmake-args:
+      - -DCONFIG_ZMK_STUDIO=y
+      - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
   - board: xiao_ble
     shield: settings_reset
 
@@ -17,6 +19,8 @@ include:
   - board: xiao_ble
     shield: chocofi_dongle
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    cmake-args:
+      - -DCONFIG_ZMK_STUDIO=y
+      - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
   - board: nice_nano
     shield: settings_reset
