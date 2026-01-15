@@ -13,6 +13,7 @@ parse_config:
     "&bootloader": Boot
     "&caps_word": Caps Word
     "&studio_unlock": Studio
+    "&key_repeat": Repeat
 
     "&bt BT_SEL 0": BT 1
     "&bt BT_SEL 1": BT 2
