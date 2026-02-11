@@ -3,11 +3,11 @@
 
 ZMK_BASE_LAYER(Base,
 //       ╭─────────┬─────────┬─────────┬───────────┬────────╮ ╭─────────┬──────────┬──────────┬─────────┬─────────╮
-           &kp Q     &kp W     &kp E     &kp R       &kp T  ,   &kp Y     &kp U      &kp I      &kp O     &kp P   ,
+           &kp Q     &kp W     &kp F     &kp P       &kp B  ,   &kp J     &kp L      &kp U      &kp Y     &kp SQT ,
 //       ├─────────┼─────────┼─────────┼───────────┼────────┤ ├─────────┼──────────┼──────────┼─────────┼─────────┤
-           HMLC A    HMLA S    HMLS D    HMLG F      &kp G  ,   &kp H     HMRG J     HMRS K     HMRA L    HMRC SQT,
+           HMLC A    HMLA R    HMLS S    HMLG T      &kp G  ,   &kp M     HMRG N     HMRS E     HMRA I    HMRC O  ,
 //╭──────├─────────┼─────────┼─────────┼───────────┼────────┤ ├─────────┼──────────┼──────────┼─────────┼─────────┤─────╮
-    XXX    &kp Z     &kp X     &kp C     &kp V       &kp B  ,   &kp N     &kp M      &comma_m   &dot_m    &qexcl    XXX ,
+    XXX    &kp Z     &kp X     &kp C     &kp D       &kp V  ,   &kp K     &kp H      &comma_m   &dot_m    &qexcl    XXX ,
 //╰──────┴─────────┴─────────┼─────────┴───────────┼────────┤ ├─────────┼──────────┴──────────┼─────────┴─────────┴─────╯
                                XXX       &kp SPACE   &mo NAV,   &mo NUM   &kp SPACE  XXX
 //                           ╰─────────┴───────────┴────────╯ ╰─────────┴──────────┴──────────╯
