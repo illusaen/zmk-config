@@ -14,7 +14,7 @@
         }; \
     };
 
-ZMK_LEADER_SEQUENCE(dbl_arrow,       &dbl_a,    A R S)
+ZMK_LEADER_SEQUENCE(dbl_arrow,       &dbl_a,    S R)
 ZMK_LEADER_SEQUENCE(sgl_arrow,       &sgl_a,    A R)
 ZMK_LEADER_SEQUENCE(js_function,     &js_fn,    F N)
 ZMK_LEADER_SEQUENCE(js_interpolation,&js_interp,S T R)

@@ -1,0 +1,12 @@
+file_format: "1"
+id: sweep
+name: SWEEP
+type: shield
+url: https://github.com/davidphilipbarr
+requires: [seeeduino_xiao_ble, nice_nano_v2, pro_micro]
+features:
+  - keys
+siblings:
+  - sweep_left
+  - sweep_right
+  - sweep_dongle
