@@ -16,7 +16,6 @@
 
     swap: swapper {
       compatible = "zmk,behavior-tri-state";
-      label = "SWAPPER";
       #binding-cells = <0>;
       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
       ignored-key-positions = <LB0>;
@@ -25,13 +24,11 @@
 };
 
 ZMK_MACRO(caps_word_custom_under, bindings = <&caps_word &caps_word_custom CASE_UNDER>;)
-ZMK_MACRO(caps_word_custom_slash, bindings = <&caps_word &caps_word_custom CASE_SLASH>;)
 
-#define CASE_CAPS &caps_word_custom_under
-#define CASE_PATH &caps_word_custom_slash
+#define CAPS_UNDER &caps_word_custom_under
 #define WORD_UNDER &caps_word_custom CASE_UNDER
 #define WORD_PATH &caps_word_custom CASE_SLASH
-#define WORD_DASH &caps_word_custom CASE_DASH
+#define WORD_SHIFT &caps_word_custom CASE_SHIFT
 #define NUM_WORD &num_word NUM
 
 #define SWAP &swap

@@ -9,9 +9,10 @@
 #define CASE_UNDER  1
 #define CASE_SLASH  2
 #define CASE_DASH   3
-#define NAV         4
-#define NUM         5
-#define FN          6
+#define CASE_SHIFT  4
+#define NAV         5
+#define NUM         6
+#define FN          7
 
 #define XXX &none
 #define ___ &trans
@@ -39,7 +40,7 @@
 #include "combos.dtsi"
 
 /* Keymap */
-ZMK_CONDITIONAL_LAYER(sys, NAV NUM, FN) // NAV + SYM --> FN.
+ZMK_CONDITIONAL_LAYER(sys, NAV NUM, FN) // NAV + NUM --> FN.
 
 #ifndef ZMK_BASE_LAYER
   #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \

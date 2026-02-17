@@ -91,7 +91,7 @@ draw $board:
     set -euo pipefail
     keymap -c "{{ draw }}/keymap-drawer.config.yaml" parse -z "{{ config }}/$board.keymap" --virtual-layers Combos > "{{ draw }}/$board.yaml"
     yq-go e '.combos.[].l = ["Combos"]' -i "{{ draw }}/$board.yaml"
-    yq-go e '.layers |= omit(["Casemode_Under", "Casemode_Slash", "Casemode_Dash"])' -i "{{ draw }}/$board.yaml"
+    yq-go e '.layers |= omit(["Casemode_Under", "Casemode_Slash", "Casemode_Dash", "Casemode_Shift"])' -i "{{ draw }}/$board.yaml"
     keymap -c "{{ draw }}/keymap-drawer.config.yaml" draw "{{ draw }}/$board.yaml" -k "$board" >"{{ draw }}/$board.svg"
 
 # initialize west

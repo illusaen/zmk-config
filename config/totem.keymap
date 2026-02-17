@@ -51,11 +51,11 @@ ZMK_BASE_LAYER(Casemode_Dash,
 
 ZMK_BASE_LAYER(Nav,
 //        ╭──────────┬───────────┬───────────┬───────────┬───────────╮ ╭─────────┬───────────┬──────────┬───────────┬──────────╮
-            XXX        CASE_PATH   CASE_CAPS   WORD_UNDER  WORD_PATH ,   SSHOT     WORD_B      NAV_UP     WORD_F      NAV_DEL  ,
+            XXX        XXX         CAPS_UNDER   WORD_UNDER  WORD_PATH ,   SSHOT     WORD_B      NAV_UP     WORD_F      NAV_DEL  ,
 //        ├──────────┼───────────┼───────────┼───────────┼───────────┤ ├─────────┼───────────┼──────────┼───────────┼──────────┤
             &kp LCTRL  &kp LALT    &kp LSHFT   &kp LGUI    SWAP      ,   LAUNCH    NAV_LEFT    NAV_DOWN   NAV_RIGHT   &kp RET  ,
 //╭───────├──────────┼───────────┼───────────┼───────────┼───────────┤ ├─────────┼───────────┼──────────┼───────────┼──────────┤─────╮
-    XXX     XXX        XXX         XXX         WORD_DASH   UNTAB     ,   TERM      &kp PUP     CMNT       &kp PDN     NAV_BSPC   XXX , 
+    XXX     XXX        XXX         XXX         WORD_SHIFT  UNTAB     ,   TERM      &kp PUP     CMNT       &kp PDN     NAV_BSPC   XXX , 
 //╰───────┴──────────┴───────────┼───────────┴───────────┴───────────┤ ├─────────┼───────────┴──────────┼───────────┴──────────┴─────╯
                                    XXX         &kp SPACE   &mo NAV   ,   &mo NUM   &kp SPACE   XXX
 //                               ╰───────────┴───────────┴───────────╯ ╰─────────┴───────────┴──────────╯

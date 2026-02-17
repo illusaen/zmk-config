@@ -6,6 +6,7 @@ parse_config:
   zmk_preamble: |
     #include <zmk-helpers/key-labels/totem.h>
     #include <zmk-helpers/key-labels/36.h>
+    #include <zmk-helpers/key-labels/34.h>
     #define CONFIG_WIRELESS
 
   raw_binding_map:
@@ -60,16 +61,16 @@ parse_config:
     "&kp LC(END)": Doc end
 
     "&num_word NUM": Num word
-    "CASE_CAPS": Caps _
-    "CASE_PATH": Caps /
+    "CAPS_UNDER": Caps _
     "SWAP": Swap
     "CANCEL": Cancel
     "WORD_PATH": Word /
     "WORD_UNDER": Word _
-    "WORD_DASH": Word -
+    "WORD_SHIFT": Camel Case
     "UNDER_C": { "t": "_", "h": "Cancel" }
     "SLASH_C": { "t": "/", "h": "Cancel" }
     "DASH_C": { "t": "-", "h": "Cancel" }
+    "SHIFT_C": { "t": "Shift", "h": "Cancel" }
 
     "&copy_cut": { "t": "Copy", "h": "Cut" }
     "&comma_m": { "t": ",", "s": ";", "h": "<" }
