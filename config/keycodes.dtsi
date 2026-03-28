@@ -17,15 +17,15 @@
 
 #define LAUNCH &kp LC(SPACE)
 #define SSHOT &kp LG(LC(N4))
-#define CMNT &kp LG(SLASH)
+#define CMNT &kp LC(SLASH)
 #define TERM &kp LC(LS(T))
 
-#define CUT_ &kp LG(X)
-#define COPY_ &kp LG(C)
-#define PASTE &kp LG(V)
-#define SAVE &kp LG(S)
-#define WORD_B &kp LA(LEFT)
-#define WORD_F &kp LA(RIGHT)
+#define CUT_ &kp LC(X)
+#define COPY_ &kp LC(C)
+#define PASTE &kp LC(V)
+#define SAVE &kp LC(S)
+#define WORD_B &kp LC(LEFT)
+#define WORD_F &kp LC(RIGHT)
 
 ZMK_MACRO(dbl_a, bindings = <&kp EQUAL &kp GT>;)
 ZMK_MACRO(sgl_a, bindings = <&kp MINUS &kp GT>;)
