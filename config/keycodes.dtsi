@@ -16,9 +16,9 @@
 #define CANCEL &kp K_CANCEL
 
 #define LAUNCH &kp LC(SPACE)
-#define SSHOT &kp LG(LC(N4))
+#define SSHOT &kp LA(LS(N4))
 #define CMNT &kp LC(SLASH)
-#define TERM &kp LC(LS(T))
+#define TERM &kp LA(LS(T))
 
 #define CUT_ &kp LC(X)
 #define COPY_ &kp LC(C)
