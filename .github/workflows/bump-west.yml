@@ -1,0 +1,24 @@
+name: West updates
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays 05:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: urob/pin-west@main
+        with:
+          # Pull requests opened by the default workflow token don't get CI
+          # runs. Set a PAT as WEST_UPDATE_TOKEN so the build workflow runs
+          # on the bump PR without manual approval.
+          token: ${{ secrets.WEST_UPDATE_TOKEN || github.token }}

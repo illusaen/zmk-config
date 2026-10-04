@@ -1,0 +1,115 @@
+# This file specifies the build dependencies for Github Action workflows and
+# for local build environments. The workspace has four toplevel directories
+# containing the user config, modules, zephy and ZMK.
+#
+# ZMK-Workspace
+# ├── config
+# ├── modules
+# ├── zephyr
+# └── zmk
+#
+# To create a local build environment, clone this repository and then run the
+# following commands from its toplevel directory:
+#
+# $ west init -l config
+# $ west update
+# $ west zephyr-export
+#
+# This mainifest is maintained using pin-west. Run `pin-west bump` to update
+# all packages.
+---
+manifest:
+  defaults:
+    remote: urob
+
+  remotes:
+    - name: urob
+      url-base: https://github.com/urob
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: 641514a97db345f499dd50b0360e594270f008fe # main (2026-08-31)
+      import: app/west.yml
+
+    # ZMK modules
+    - name: zmk-adaptive-key
+      path: modules/zmk/adaptive-key
+      revision: e5b335a7b1076cb122582f5a892b118b02a3be34 # main (2026-08-18)
+    - name: zmk-auto-layer
+      path: modules/zmk/auto-layer
+      revision: 62c201934711369d50a28df12e1d055d05cb6460 # main (2026-08-18)
+    - name: zmk-helpers
+      path: modules/zmk/helpers
+      revision: 95edb8f15ef1d1bd8332810555f8cf5837fbdd27 # main (2026-08-31)
+    - name: zmk-leader-key
+      path: modules/zmk/leader-key
+      revision: e894d9afa5164b7fff641db4194fc3d4d6e84bbb # main (2026-08-18)
+    - name: zmk-tri-state
+      path: modules/zmk/tri-state
+      revision: 0c6eaf55d2da0d85b943e02d72831c2d8ea64501 # main (2026-08-31)
+    - name: zmk-unicode
+      path: modules/zmk/unicode
+      revision: 5f458b6f1fd8ca83f4aba793c2a64916522507e9 # main (2026-08-31)
+
+    # Avoid downloading GBs of unused Zephyr modules. Remove this section to
+    # restore the default (needed for less common hardware).
+    - name: zephyr
+      remote: zmkfirmware
+      revision: 10ba6d0cb38bc3d258775d27982f707599320085 # v4.1.0+zmk-fixes (2026-08-18)
+      clone-depth: 1
+      import:
+        name-allowlist:
+          - cmsis
+          - hal_nordic
+          - hal_rpi_pico
+          - hal_stm32  # imported independently by ZMK
+          - lvgl  # imported independently by ZMK
+          - mbedtls
+          - tinycrypt
+
+    # --- imported projects pinned by pin-west; do not edit ---
+    - name: cmsis # via zephyr (west.yml)
+      url: https://github.com/zephyrproject-rtos/cmsis
+      revision: d1b8b20b6278615b00e136374540eb1c00dcabe7
+      path: modules/hal/cmsis
+      groups: [hal]
+    - name: hal_nordic # via zephyr (west.yml)
+      url: https://github.com/zephyrproject-rtos/hal_nordic
+      revision: 37ca068d7b013fb65a2acc9306bffa48a3e72839
+      path: modules/hal/nordic
+      groups: [hal]
+    - name: hal_rpi_pico # via zephyr (west.yml)
+      url: https://github.com/zephyrproject-rtos/hal_rpi_pico
+      revision: 7b57b24588797e6e7bf18b6bda168e6b96374264
+      path: modules/hal/rpi_pico
+      groups: [hal]
+    - name: hal_stm32 # via zmk (app/west.yml)
+      url: https://github.com/zmkfirmware/hal_stm32
+      revision: 4fcc3a3f32abe1c4cb76d9d1cef967728dd03908
+      path: modules/hal/stm32
+      groups: [hal]
+    - name: lvgl # via zmk (app/west.yml)
+      url: https://github.com/zmkfirmware/lvgl
+      revision: f1db87ee98f1810328a8419572fa42a3b5f352ae
+      path: modules/lib/gui/lvgl
+    - name: mbedtls # via zephyr (west.yml)
+      url: https://github.com/zephyrproject-rtos/mbedtls
+      revision: 4952e1328529ee549d412b498ea71c54f30aa3b1
+      path: modules/crypto/mbedtls
+      groups: [crypto]
+    - name: tinycrypt # via zephyr (west.yml)
+      url: https://github.com/zephyrproject-rtos/tinycrypt
+      revision: 1012a3ebee18c15ede5efc8332ee2fc37817670f
+      path: modules/crypto/tinycrypt
+      groups: [crypto]
+    - name: zmk-studio-messages # via zmk (app/west.yml)
+      url: https://github.com/zmkfirmware/zmk-studio-messages
+      revision: 6cb4c283e76209d59c45fbcb218800cd19e9339d
+      path: modules/msgs/zmk-studio-messages
+    # --- end of imported projects ---
+
+  self:
+    path: config
