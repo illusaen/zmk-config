@@ -85,17 +85,6 @@
         imports = ["${extraModulesPath}/git/hooks.nix"];
         name = "zmk-config";
         devshell = {
-          startup = {
-            initOrSyncWest.text = ''
-              if [ -d ".west" ]; then
-                west update --fetch-opt=--filter=blob:none
-              else
-                west init -l config
-                west update --fetch-opt=--filter=blob:none
-                west zephyr-export
-              fi
-            '';
-          };
           #           startup.setupLibatomic.text = lib.optionalString (pkgs.stdenv.hostPlatform.isLinux) (let libatomic = pkgs.runCommand "libatomic" {} ''
           #               mkdir -p $out/lib
           #               cp -d ${pkgs.stdenv.cc.cc.lib}/lib/libatomic.so* $out/lib/
@@ -161,9 +150,40 @@
             help = "removes .build and firmware directories";
           }
           {
-            name = "bump-west";
-            command = "pin-west bump && west update --fetch-opt=--filter=blob:none";
-            help = "removes .build and firmware directories";
+            name = "build";
+            category = "[dev]";
+            command = "echo \"build all keyboards\"";
+            help = "build all keyboards by default or select keyboard name";
+          }
+          {
+            name = "draw";
+            category = "[dev]";
+            command = "echo \"draw all keyboards\"";
+            help = "draw all keyboards by default or select keyboard name";
+          }
+          {
+            name = "init";
+            category = "[west]";
+            command = ''
+              if [[ ! -d "$PRJ_ROOT/.west" ]]; then
+                west init -l config
+              fi
+
+              GIT_CONFIG_COUNT=2 \
+                GIT_CONFIG_KEY_0=pack.threads \
+                GIT_CONFIG_VALUE_0=1 \
+                GIT_CONFIG_KEY_1=core.deltaBaseCacheLimit \
+                GIT_CONFIG_VALUE_1=64m \
+                west update --narrow --fetch-opt=--filter=blob:none
+              west zephyr-export
+            '';
+            help = "initializes or synchronizes the West workspace";
+          }
+          {
+            name = "bump";
+            category = "[west]";
+            command = "pin-west bump && init";
+            help = "updates and pins the West manifest";
           }
         ];
       });
