@@ -84,6 +84,9 @@
       ...
     }: let
       zephyrSdk = zephyr."sdk-0_16".override {targets = ["arm-zephyr-eabi"];};
+      zephyrPythonEnv = zephyr.pythonEnv.override {
+        extraPackages = pythonPackages: [pythonPackages.protobuf];
+      };
       checkYq = ''
         if yq --help 2>&1 | grep -qi 'eval'; then
           echo "This command requires python-yq, but PATH contains golang-yq" >&2
@@ -126,19 +129,20 @@
               dtc
               gcc
               ninja
+              protobuf
               yq # Make sure yq resolves to python-yq.
             ]
             ++ [
               treefmt.config.build.wrapper
               keymap-drawer
-              zephyr.pythonEnv
+              zephyrPythonEnv
               zephyrSdk
             ];
         };
         env = [
           {
             name = "PYTHONPATH";
-            value = "${zephyr.pythonEnv}/${zephyr.pythonEnv.sitePackages}";
+            value = "${zephyrPythonEnv}/${zephyrPythonEnv.sitePackages}";
           }
           {
             name = "ZMK_BUILD_DIR";
@@ -162,6 +166,7 @@
           enable = true;
           pre-commit.text = ''
             treefmt
+            draw
           '';
         };
 
@@ -350,6 +355,14 @@
               diff -auZ "$config_dir/keycode_events.snapshot" "$build_dir/keycode_events.log"
             '';
             help = "runs a ZMK module snapshot test";
+          }
+          {
+            name = "pin";
+            category = "[west]";
+            help = "modifies pins then runs init";
+            command = ''
+              ${lib.getExe pkgs.pin-west} pin && init
+            '';
           }
           {
             name = "init";

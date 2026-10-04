@@ -23,6 +23,8 @@ manifest:
     remote: urob
 
   remotes:
+    - name: illusaen
+      url-base: https://github.com/illusaen
     - name: urob
       url-base: https://github.com/urob
     - name: zmkfirmware
@@ -35,6 +37,10 @@ manifest:
       import: app/west.yml
 
     # ZMK modules
+    - name: zmk-keyboards-split
+      revision: dc8eff95b90c4b088cb1d2a2aad4a5a550ef5a82 # main (2026-10-04)
+      path: modules/zmk/keyboards-split
+      remote: illusaen
     - name: zmk-adaptive-key
       path: modules/zmk/adaptive-key
       revision: e987227d625e8863343baf16bd11ff90310482a5 # main (2026-10-04)
@@ -62,6 +68,7 @@ manifest:
           - hal_stm32  # imported independently by ZMK
           - lvgl  # imported independently by ZMK
           - mbedtls
+          - nanopb
           - tinycrypt
 
     # --- imported projects pinned by pin-west; do not edit ---
@@ -94,6 +101,11 @@ manifest:
       revision: 4952e1328529ee549d412b498ea71c54f30aa3b1
       path: modules/crypto/mbedtls
       groups: [crypto]
+    - name: nanopb # via zephyr (submanifests/optional.yaml)
+      url: https://github.com/zephyrproject-rtos/nanopb
+      revision: 7307ce399b81ddcb3c3a5dc862c52d4754328d38
+      path: modules/lib/nanopb
+      groups: [optional]
     - name: tinycrypt # via zephyr (west.yml)
       url: https://github.com/zephyrproject-rtos/tinycrypt
       revision: 1012a3ebee18c15ede5efc8332ee2fc37817670f
