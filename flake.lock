@@ -58,7 +58,11 @@
       }
     },
     "pin-west": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
         "lastModified": 1790938006,
         "narHash": "sha256-Z54jZYwV+Cp7aYMkskhxnzIKyRo5tkcdsW6gIniLgfE=",

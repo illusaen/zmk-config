@@ -21,8 +21,10 @@
 
     # West manifest locking; skipping the flake to build its package.nix with
     # our own nixpkgs and python package set.
-    pin-west.url = "github:urob/pin-west";
-    pin-west.flake = false;
+    pin-west = {
+      url = "github:urob/pin-west";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -44,7 +46,7 @@
     systemContexts = lib.genAttrs ["x86_64-linux" "aarch64-linux"] (system: let
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [devshell.overlays.default (final: _prev: {pin-west = final.python3Packages.callPackage "${pin-west}/package.nix" {};})];
+        overlays = [devshell.overlays.default pin-west.overlays.default];
         config.allowUnfree = true;
       };
     in {
@@ -63,7 +65,7 @@
           };
         in {
           command = "${lib.getExe dts-format}";
-          options = ["--fix"];
+          options = ["--fix" "--tab-width=2"];
           includes = ["*.dtsi" "*.dts" "*.overlay" "*.keymap"];
         };
       };
@@ -99,6 +101,7 @@
               gcc
               ninja
               yq # Make sure yq resolves to python-yq.
+              pin-west
               # -- Used by just_recipes and west_commands. Most systems already have them. --
               # pkgs.gawk
               # pkgs.unixtools.column
@@ -111,7 +114,6 @@
             ++ [
               treefmt.config.build.wrapper
               keymap-drawer
-              pin-west
               zephyr.pythonEnv
               (zephyr.sdk.override {targets = ["arm-zephyr-eabi"];})
             ];

@@ -44,17 +44,11 @@ manifest:
     - name: zmk-helpers
       path: modules/zmk/helpers
       revision: 95edb8f15ef1d1bd8332810555f8cf5837fbdd27 # main (2026-08-31)
-    - name: zmk-leader-key
-      path: modules/zmk/leader-key
-      revision: e894d9afa5164b7fff641db4194fc3d4d6e84bbb # main (2026-08-18)
     - name: zmk-tri-state
       path: modules/zmk/tri-state
       revision: 0c6eaf55d2da0d85b943e02d72831c2d8ea64501 # main (2026-08-31)
-    - name: zmk-unicode
-      path: modules/zmk/unicode
-      revision: 5f458b6f1fd8ca83f4aba793c2a64916522507e9 # main (2026-08-31)
 
-    # Avoid downloading GBs of unused Zephyr modules. Remove this section to
+    # Avoid downloading GBs of unused Zephyr modules. Remove _this section to
     # restore the default (needed for less common hardware).
     - name: zephyr
       remote: zmkfirmware
