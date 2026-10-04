@@ -31,8 +31,8 @@ jobs:
           persist-credentials: false
       - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
       - name: Set up build environment
-        run: nix develop --command just init
+        run: nix develop --command init
       - name: Test build recipe
-        run: nix develop --command just build planck
+        run: nix develop --command build chocofi_left
       - name: Test draw recipe
-        run: nix develop --command just draw
+        run: nix develop --command draw

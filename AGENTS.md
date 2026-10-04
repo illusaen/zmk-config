@@ -11,10 +11,10 @@ and the build pipeline, see the [README](README.md).
   `config/**` or `build.yaml`); the firmware is downloaded from the Actions tab. A fresh fork has
   Actions disabled — enable them once from the fork's Actions tab.
 - **Building locally** requires the nix-based dev environment (nix + direnv, see the
-  [README](README.md#local-build-environment)) plus a one-time `just init`, which turns the
+  [README](README.md#local-build-environment)) plus a one-time `init`, which turns the
   repository into a west workspace by pulling in ZMK, Zephyr and the modules. Then verify keymap
-  changes with `just build <target>` (`just list` shows valid targets, `just build all` builds
-  everything); compiled firmware lands in `firmware/`. If `just` or `west` are missing, the
+  changes with `build <target>` (`list` shows valid targets, `build all` builds everything);
+  compiled firmware lands in `firmware/`. If these commands or `west` are missing, the
   environment isn't active — run commands through `nix develop --command <cmd>` or activate with
   `direnv allow`.
 - `config/west.yml` is maintained by [pin-west](https://github.com/urob/pin-west): never hand-edit
@@ -25,9 +25,9 @@ and the build pipeline, see the [README](README.md).
   `ZMK_LAYER` are safe and need no guarding. It earns its keep on plain devicetree, i.e. when
   developing modules or board definitions. Without arguments it recurses over the working
   directory; pass files explicitly to narrow it.
-- After keymap changes that affect the layout, regenerate the diagrams with `just draw` (renders
+- After keymap changes that affect the layout, regenerate the diagrams with `draw` (renders
   `draw/base.svg` and `draw/overview.svg` from the 34-key base keymap).
-- `just test` is a snapshot-test harness for developing the ZMK **modules** checked out under
+- `snapshot-test` is a snapshot-test harness for developing the ZMK **modules** checked out under
   `modules/zmk/`. It does not test this repo's keymap; the keymap is validated by building.
 
 ## How the multi-board layout works
@@ -66,7 +66,7 @@ non-split, wired board; `config/glove80.keymap` shows a much larger board.
    `corne_left`/`corne_right`), from the ZMK docs or the board's vendor config.
 
 3. **Check for an existing key-position header** in
-   `modules/zmk/helpers/include/zmk-helpers/key-labels/` (after `just init`; the same list is in
+  `modules/zmk/helpers/include/zmk-helpers/key-labels/` (after `init`; the same list is in
    the [zmk-helpers repo](https://github.com/urob/zmk-helpers/tree/main/include/zmk-helpers/key-labels)).
    Many layouts already have one, either by name (`glove80.h`, `sofle.h`, …) or by shape (`36.h`,
    `42.h`, `4x12_wide.h`, …).
@@ -90,7 +90,7 @@ non-split, wired board; `config/glove80.keymap` shows a much larger board.
    shield-based hardware). Board revisions use ZMK's `name@rev//zmk` syntax — see the existing
    entries.
 
-7. **Build and check**: `just build <name>` (any substring of the board/shield matches), then
+7. **Build and check**: `build <name>` (any substring of the board/shield matches), then
    confirm the artifact appears in `firmware/`.
 
 ## Where to change what
