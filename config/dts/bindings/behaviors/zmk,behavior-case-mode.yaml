@@ -1,3 +1,0 @@
-description: Select or toggle a word case mode
-compatible: "zmk,behavior-case-mode"
-include: one_param.yaml

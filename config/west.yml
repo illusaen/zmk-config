@@ -41,6 +41,10 @@ manifest:
       revision: dc8eff95b90c4b088cb1d2a2aad4a5a550ef5a82 # main (2026-10-04)
       path: modules/zmk/keyboards-split
       remote: illusaen
+    - name: zmk-behavior-casemode
+      revision: aa90c3e80b773c1c4b78a2797d5a3b745994b564 # main (2026-10-05)
+      path: modules/zmk/behavior-casemode
+      remote: illusaen
     - name: zmk-adaptive-key
       path: modules/zmk/adaptive-key
       revision: e987227d625e8863343baf16bd11ff90310482a5 # main (2026-10-04)

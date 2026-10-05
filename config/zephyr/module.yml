@@ -1,6 +1,0 @@
-name: zmk-config-word-case
-build:
-  cmake: .
-  kconfig: Kconfig
-  settings:
-    dts_root: .
