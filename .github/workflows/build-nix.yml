@@ -23,8 +23,20 @@ permissions:
 
 jobs:
   build:
-    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@main
-    with:
-      # Set to 'gnuarmemb' (fastest), 'zephyr' or, 'zephyr-full' (most
-      # compatible). ZMK Studio requires 'zephyr-full'.
-      toolchain: zephyr-full
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+      - name: Set up build environment
+        run: nix develop --command init
+      - name: Build firmware
+        run: nix develop --command build all
+      - name: Upload firmware
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: firmware
+          path: firmware/
+          if-no-files-found: error
