@@ -1,20 +1,37 @@
-# Example for using the keymap-drawer ZMK user config workflow
 name: Draw ZMK keymaps
 on:
-  workflow_dispatch:  # can be triggered manually
-  push:               # automatically run on changes to following paths
+  workflow_dispatch:
+  push:
     paths:
-      - "config/*.keymap"
-      - "config/*.dtsi"
-      - "draw/config.yaml"
+      - config/*.keymap
+      - config/*.dtsi
+      - draw/config.yaml
+      - flake.nix
+      - flake.lock
+      - nix/**
+      - .github/workflows/draw.yml
+
+permissions:
+  contents: write
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
-    permissions:
-      contents: write  # allow workflow to commit to the repo
-    with:
-      keymap_patterns: "config/*.keymap"        # path to the keymaps to parse
-      config_path: "draw/config.yaml"  # config file, ignored if not exists
-      output_folder: "draw"            # path to save produced SVG and keymap YAML files
-      commit_message: "[Draw] ${{ github.event.head_commit.message }}"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+      - name: Draw keymaps
+        run: nix develop --command draw
+      - name: Commit diagrams
+        env:
+          COMMIT_MESSAGE: "[Draw] ${{ github.event.head_commit.message || 'Update keymap diagrams' }}"
+        run: |
+          git add draw/base.svg draw/overview.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m "$COMMIT_MESSAGE"
+          git push
