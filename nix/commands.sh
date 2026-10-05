@@ -126,17 +126,22 @@ cmd_flash() {
 }
 
 cmd_draw() {
-  local jq_expr
+  local draw_dir jq_expr
 
   cd "$PRJ_ROOT"
   check_yq
 
+  draw_dir="$PRJ_ROOT/.build/draw"
+  mkdir -p "$draw_dir"
+
   keymap -c "$PRJ_ROOT/draw/config.yaml" parse \
     -z "$PRJ_ROOT/config/base.keymap" \
-    --virtual-layers Combos >"$PRJ_ROOT/draw/base.yaml"
-  yq -Yi '.combos.[].l = ["Combos"]' "$PRJ_ROOT/draw/base.yaml"
+    --virtual-layers Combos \
+    -o "$draw_dir/base.yaml"
+  yq -Yi '.combos.[].l = ["Combos"]' "$draw_dir/base.yaml"
   keymap -c "$PRJ_ROOT/draw/config.yaml" draw \
-    "$PRJ_ROOT/draw/base.yaml" -k ferris/sweep >"$PRJ_ROOT/draw/base.svg"
+    "$draw_dir/base.yaml" -k ferris/sweep \
+    -o "$draw_dir/base.svg"
 
   jq_expr='
     def extract_label: if type == "string" then . else .t end;
@@ -159,10 +164,23 @@ cmd_draw() {
     } |
     .combos = [.combos[] | .l = ["Combos"]]
   '
-  yq -y "$jq_expr" "$PRJ_ROOT/draw/base.yaml" >"$PRJ_ROOT/draw/overview.yaml"
+  yq -y "$jq_expr" "$draw_dir/base.yaml" >"$draw_dir/overview.yaml"
   keymap -c "$PRJ_ROOT/draw/config.yaml" draw \
-    "$PRJ_ROOT/draw/overview.yaml" -k ferris/sweep >"$PRJ_ROOT/draw/overview.svg"
-  sed -i '/<text.*class="label"/d' "$PRJ_ROOT/draw/overview.svg"
+    "$draw_dir/overview.yaml" -k ferris/sweep \
+    -o "$draw_dir/overview.svg"
+  sed -i '/<text.*class="label"/d' "$draw_dir/overview.svg"
+
+  for diagram in base overview; do
+    if [[ ! -s "$draw_dir/$diagram.svg" ]] || ! grep -q '<svg' "$draw_dir/$diagram.svg"; then
+      echo "Failed to render $diagram.svg" >&2
+      return 1
+    fi
+  done
+
+  install -m 0644 "$draw_dir/base.yaml" "$PRJ_ROOT/draw/base.yaml"
+  install -m 0644 "$draw_dir/base.svg" "$PRJ_ROOT/draw/base.svg"
+  install -m 0644 "$draw_dir/overview.yaml" "$PRJ_ROOT/draw/overview.yaml"
+  install -m 0644 "$draw_dir/overview.svg" "$PRJ_ROOT/draw/overview.svg"
 }
 
 cmd_pin() {
