@@ -128,9 +128,9 @@ svg.keymap {
     --color-dendron: #d5c4a1;
     --color-held:    #bdae93;
 
-    --color-nav:     #d79921;
-    --color-num:     #458588;
-    --color-sys:     #689d6a;
+    --color-nav:     #F0BD6A;
+    --color-num:     #DA6C7B;
+    --color-sys:     #D6FFB7;
 
     fill: var(--color-text);
     background-color: var(--color-bg);
@@ -165,7 +165,7 @@ text.label, text.footer {
     stroke-width: 4;
     paint-order: stroke;
 }
-text.label  { font-weight: bold; text-anchor: start; }
+text.label  { font-weight: bold; text-anchor: start; dominant-baseline: hanging; }
 text.footer { text-anchor: end; dominant-baseline: auto; }
 
 rect.key, rect.combo, rect.combo-separate { fill: var(--color-key); stroke-width: 0; }
@@ -179,10 +179,9 @@ text.tr, use.tr { fill: var(--color-nav); }
 text.bl, use.bl { fill: var(--color-num); }
 text.br, use.br { fill: var(--color-sys); }
 
-.keypos-30 text.hold { fill: var(--color-nav); }
-.keypos-31 text.hold { fill: var(--color-fn); }
-.keypos-32 text.hold { fill: var(--color-num); font-size: 15px; }
-.keypos-32 text.tap  { fill: var(--color-num); }
+.keypos-31 text.hold { fill: var(--color-nav); }
+.keypos-32 text.hold { fill: var(--color-num); }
+# .keypos-32 text.tap  { fill: var(--color-num); }
 .keypos-33 text.hold { font-size: 15px; }
 
 .icon-tabler > path                             { fill: inherit; stroke: inherit; stroke-width: 2; }
@@ -197,11 +196,12 @@ text.br, use.br { fill: var(--color-sys); }
         --color-dendron: #504945;
         --color-held:    #665c54;
 
-        --color-nav:     #fabd2f;
-        --color-num:     #458588;
-        --color-sys:     #689d6a;
+        --color-nav:     #F0BD6A;
+        --color-num:     #DA6C7B;
+        --color-sys:     #D6FFB7;
     }
-}</style>
+}
+</style>
 <g transform="translate(10, 0)" class="layer-Base">
 <text x="0" y="5" class="label" id="Base">Base</text>
 <g transform="translate(0, 10)">
@@ -356,7 +356,7 @@ text.br, use.br { fill: var(--color-sys); }
 <g transform="translate(451, 221) rotate(-15.0)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <use href="#mdi:keyboard-space" xlink:href="#mdi:keyboard-space" x="-8" y="-7" height="16" width="16.0" class="key tap glyph mdi:keyboard-space"/>
-<text x="0" y="-22" class="key shifted"><tspan style="font-size: 67%">Sente…</tspan></text>
+<text x="0" y="-22" class="key shifted"><tspan style="font-size: 67%">Sntnce</tspan></text>
 </g>
 </g>
 </g>
@@ -404,7 +404,7 @@ text.br, use.br { fill: var(--color-sys); }
 <g transform="translate(588, 46)" class="key keypos-8">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="-8" y="-7" height="16" width="16.0" class="key tap glyph mdi:backspace-reverse-outline"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="-6" y="10" height="12" width="12.0" class="key hold glyph mdi:backspace-reverse-outline"/>
+<text x="0" y="22" class="key hold">word</text>
 </g>
 <g transform="translate(644, 81)" class="key keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -432,9 +432,7 @@ text.br, use.br { fill: var(--color-sys); }
 </g>
 <g transform="translate(252, 108)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="1" class="key tap">
-<tspan x="0" dy="-0.6em">Alt</tspan><tspan x="0" dy="1.2em">Tab</tspan>
-</text>
+<text x="0" y="1" class="key tap"><tspan style="font-size: 80%">AltTb</tspan></text>
 </g>
 <g transform="translate(420, 108)" class="key keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -769,11 +767,13 @@ text.br, use.br { fill: var(--color-sys); }
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap"><tspan style="font-size: 80%">Break</tspan></text>
 </g>
-<g transform="translate(532, 140)" class="key trans keypos-27">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<g transform="translate(532, 140)" class="key keypos-27">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="1" class="key tap">HDMI</text>
 </g>
-<g transform="translate(588, 158)" class="key trans keypos-28">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<g transform="translate(588, 158)" class="key keypos-28">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="1" class="key tap">DP</text>
 </g>
 <g transform="translate(644, 193)" class="key trans keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -914,7 +914,6 @@ text.br, use.br { fill: var(--color-sys); }
 <g class="combo combopos-3">
 <rect rx="6" ry="6" x="154" y="79" width="28" height="26" class="combo"/>
 <use href="#mdi:keyboard-tab-reverse" xlink:href="#mdi:keyboard-tab-reverse" x="160" y="84" height="16" width="16.0" class="combo tap glyph mdi:keyboard-tab-reverse"/>
-<use href="#mdi:apple-keyboard-control" xlink:href="#mdi:apple-keyboard-control" x="162" y="89" height="12" width="12.0" class="combo hold glyph mdi:apple-keyboard-control"/>
 </g>
 <g class="combo combopos-4">
 <path d="M140,195 h-50 a6.0,6.0 0 0 1 -6.0,-6.0 v-13" class="combo"/>

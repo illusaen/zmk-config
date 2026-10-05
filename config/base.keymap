@@ -187,6 +187,9 @@ ZMK_MACRO(const_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE 
 #define LAUNCHER  &kp LC(SPACE)
 #define TERMINAL  &kp LA(LS(T))
 #define BREAK     &kp PAUSE_BREAK
+#define COMMENT   &kp LC(FSLH)
+#define SWITCH_HD &kp LC(LA(LS(M)))
+#define SWITCH_DP &kp LC(LA(M))
 
 // Word modes stay active while typing alphanumerics, backspace, delete, or modifiers.
 #define CAPS_UND  &case_mode CASE_SCREAM
@@ -194,7 +197,6 @@ ZMK_MACRO(const_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE 
 #define WORD_KEB  &case_mode CASE_KEBAB
 #define WORD_PAS  &case_mode CASE_PASCAL
 #define WORD_PTH  &case_mode CASE_PATH
-#define COMMENT   &kp LC(FSLH)
 
 /* Keymap */
 
@@ -247,7 +249,7 @@ ZMK_BASE_LAYER(Sys,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &hml LGUI F11 &hml LALT F4  &hml LSHFT F5 &hml LCTRL F6 &kp PG_DN   ,   STUDIO        HMRC_PREV     HMRS_VDN      HMRA_NEXT     HMRG_MUTE   ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp F10       &kp F1        &kp F2        &kp F3        &kp PG_UP   ,   ___           BREAK         ___           ___           ___         ,
+    &kp F10       &kp F1        &kp F2        &kp F3        &kp PG_UP   ,   ___           BREAK         SWITCH_HD     SWITCH_DP     ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   ___           ___
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯

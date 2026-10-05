@@ -23,11 +23,13 @@ parse_config:
     "&kp LC(FSLH)": //
     "&kp LC(HOME)": Doc S
     "&kp LC(END)": Doc E
+    "&kp LC(LA(LS(M)))": HDMI
+    "&kp LC(LA(M))": DP
 
-    "&swapper": Alt Tab
+    "&swapper": AltTb
     "LS(LCTRL) LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&kp LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
-    "&dot_spc": Sentence
+    "&dot_spc": Sntnce
     "&num_dance": { "t": "Smart"}
     "&magic_shift": { "t": Magic, "h": "Shift" }
     "&key_repeat": Rpt
@@ -37,6 +39,7 @@ parse_config:
     "&const_fn": JS ()
 
     "&hml LS(LALT)TAB": { "t": $$mdi:keyboard-tab$$, "h": "" }
+    "&hml LS(LCTRL) LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&hm_combo_lpar": { "t": "< (" }
     "&hm_combo_rpar": { "t": "> )"}
     "&kp LBKT": { "t": "{ ["}
@@ -49,7 +52,7 @@ parse_config:
     "CAPS_UND": "WD_MD"
 
     "NAV_BSPC": { t: $$mdi:backspace-outline$$, h: "word" }
-    "NAV_DEL": { t: $$mdi:backspace-reverse-outline$$, h: "word" }
+    "&mt LC(DEL) DEL": { t: $$mdi:backspace-reverse-outline$$, h: "word" }
 
   trans_legend: { "t": "", "type": "trans" }
 
@@ -206,9 +209,9 @@ draw_config:
         --color-dendron: #d5c4a1;
         --color-held:    #bdae93;
 
-        --color-nav:     #d79921;
-        --color-num:     #458588;
-        --color-sys:     #689d6a;
+        --color-nav:     #F0BD6A;
+        --color-num:     #DA6C7B;
+        --color-sys:     #D6FFB7;
 
         fill: var(--color-text);
         background-color: var(--color-bg);
@@ -243,7 +246,7 @@ draw_config:
         stroke-width: 4;
         paint-order: stroke;
     }
-    text.label  { font-weight: bold; text-anchor: start; }
+    text.label  { font-weight: bold; text-anchor: start; dominant-baseline: hanging; }
     text.footer { text-anchor: end; dominant-baseline: auto; }
 
     rect.key, rect.combo, rect.combo-separate { fill: var(--color-key); stroke-width: 0; }
@@ -257,10 +260,9 @@ draw_config:
     text.bl, use.bl { fill: var(--color-num); }
     text.br, use.br { fill: var(--color-sys); }
 
-    .keypos-30 text.hold { fill: var(--color-nav); }
-    .keypos-31 text.hold { fill: var(--color-fn); }
-    .keypos-32 text.hold { fill: var(--color-num); font-size: 15px; }
-    .keypos-32 text.tap  { fill: var(--color-num); }
+    .keypos-31 text.hold { fill: var(--color-nav); }
+    .keypos-32 text.hold { fill: var(--color-num); }
+    # .keypos-32 text.tap  { fill: var(--color-num); }
     .keypos-33 text.hold { font-size: 15px; }
 
     .icon-tabler > path                             { fill: inherit; stroke: inherit; stroke-width: 2; }
@@ -275,8 +277,8 @@ draw_config:
             --color-dendron: #504945;
             --color-held:    #665c54;
 
-            --color-nav:     #fabd2f;
-            --color-num:     #458588;
-            --color-sys:     #689d6a;
+            --color-nav:     #F0BD6A;
+            --color-num:     #DA6C7B;
+            --color-sys:     #D6FFB7;
         }
     }

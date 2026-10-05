@@ -5,10 +5,18 @@ on:
     paths:
       - config/**
       - build.yaml
+      - flake.nix
+      - flake.lock
+      - nix/**
+      - .github/workflows/build-nix.yml
   pull_request:
     paths:
       - config/**
       - build.yaml
+      - flake.nix
+      - flake.lock
+      - nix/**
+      - .github/workflows/build-nix.yml
 
 permissions:
   contents: read

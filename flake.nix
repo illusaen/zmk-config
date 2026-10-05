@@ -84,7 +84,17 @@
       ...
     }: let
       zephyrSdk = zephyr."sdk-0_16".override {targets = ["arm-zephyr-eabi"];};
+      zephyrPython = pkgs.python3.override {
+        packageOverrides = final: prev: {
+          # Zephyr's Python environment includes this optional probe plugin;
+          # relax its stale ~=0.14.0.post2 metadata constraint for hidapi 0.15.0.
+          spsdk-mcu-link = prev.spsdk-mcu-link.overridePythonAttrs (_: {
+            pythonRelaxDeps = ["hidapi"];
+          });
+        };
+      };
       zephyrPythonEnv = zephyr.pythonEnv.override {
+        python3 = zephyrPython;
         extraPackages = pythonPackages: [pythonPackages.protobuf];
       };
     in {
