@@ -5,16 +5,15 @@
 #ifdef CONFIG_WIRELESS
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-  #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
+  #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_CLR
 #else
-  #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
+  #define _BT_SEL_KEYS_ &trans &trans &trans &trans
 #endif
 
 #define DEF 0
 #define NAV 1
-#define FN 2
-#define NUM 3
-#define SYS 4
+#define NUM 2
+#define SYS 3
 
 #define XXX &none
 #define ___ &trans
@@ -142,9 +141,7 @@ SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
-// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
-             tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+// Tap: space | Shift + tap: dot -> space -> sticky shift
 SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
           tap-ms = <5>;)
@@ -157,18 +154,39 @@ ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
 ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
               tapping-term-ms = <200>;)
 
+ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT &sk SPACE>; wait-ms = <0>;
+          tap-ms = <5>;)
+ZMK_MACRO(sgl_arrow, bindings = <&kp MINUS &kp GT &sk SPACE>; wait-ms = <0>;
+          tap-ms = <5>;)
+ZMK_MACRO(const_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE &kp EQUAL &kp GT &kp SPACE &kp LBRC &kp RBRC &kp LEFT &kp RET>; wait-ms = <0>;
+          tap-ms = <5>;)
+
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
-#define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
-#define DSK_NEXT  &hmr LALT LG(LC(RIGHT)) // Next     desktop.
-#define PIN_WIN   &kp LG(LC(LS(Q)))       // Pin window across desktops.
-#define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
-#define DSK_MGR   &kp LA(GRAVE)           // Desktop manager.
-#define VOL_DOWN  &hmr RSHFT C_VOL_DN
+#define STUDIO    &studio_unlock
+#define HMRC_LPAR &hmr LCTRL LPAR
+#define HMRA_RPAR &hmr LALT RPAR
+#define HMRG_RET  &hmr LGUI RET
+#define HMRS_VDN  &hmr LSHFT C_VOL_DN
+#define HMRA_NEXT &hmr LALT C_NEXT
+#define HMRG_MUTE &hmr LGUI C_MUTE
+#define HMRC_PREV &hmr LCTRL C_PREV
+#define SCREENSHT &kp LA(LS(4))
+#define LAUNCHER  &kp LC(SPACE)
+#define TERMINAL  &kp LA(LS(T))
+#define BREAK     &kp PAUSE_BREAK
+
+// word modes with space changed. double tapping the changed space button cancels.
+#define CAPS_UND  &none // caps word but sets space to underscore => screaming snake case
+#define WORD_UND  &none // regular letters but sets space to underscore => snake case
+#define WORD_KEB  &none // regular letters but sets space to hyphen => kebab case
+#define WORD_PAS  &none // when entering mode, sets shift on. space turns into shift. => pascal case
+#define WORD_PTH  &none // regular letters but sets space to forward slash => paths
+#define COMMENT   &kp LC(FSLH)
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
+ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS) // NAV + NUM --> SYS.
 
 #ifndef ZMK_BASE_LAYER
   #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
@@ -183,41 +201,29 @@ ZMK_BASE_LAYER(Base,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp Z         &kp X         &kp C         &kp D         &kp V       ,   &kp K         &kp H         &comma_morph  &dot_morph    &qexcl      ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
-                                              &lt_spc NAV 0 &lt FN RET  ,   SMART_NUM     MAGIC_SHIFT
+                                              MAGIC_SHIFT   &lt NAV RET ,   SMART_NUM     &spc_morph
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
 )
 
 ZMK_BASE_LAYER(Nav,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp LA(F4)    ___           &kp LS(TAB)   &swapper      ___         ,   &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___         ,
+    WORD_KEB      WORD_PTH      CAPS_UND      WORD_UND      WORD_PAS    ,   SCREENSHT     NAV_BSPC      NAV_UP        NAV_DEL       &kp HOME    ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     ___         ,   &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET     ,
+    &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     &swapper    ,   LAUNCHER      NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET     ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___         ,   &kp INS       &kp TAB       ___           ___           ___         ,
+    &const_fn     &sgl_arrow    &dbl_arrow    &key_repeat   ___         ,   TERMINAL      &kp PG_UP     COMMENT       &kp PG_DN     &kp END     ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   ___           CANCEL
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
 )
 
-ZMK_BASE_LAYER(Fn,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp F12       &kp F7        &kp F8        &kp F9        ___         ,   ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    ___         ,
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &hml LGUI F11 &hml LALT F4  &hml LSHFT F5 &hml LCTRL F6 ___         ,   ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___         ,
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp F10       &kp F1        &kp F2        &kp F3        ___         ,   PIN_APP       PIN_WIN       DSK_MGR       ___           ___         ,
-//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
-                                              ___           ___         ,   &kp C_MUTE    &kp C_PP
-//                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
-)
-
 ZMK_BASE_LAYER(Num,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    ___           &kp N7        &kp N8        &kp N9        ___         ,   ___           ___           ___           ___           ___         ,
+    &kp STAR      &kp N7        &kp N8        &kp N9        &kp PLUS    ,   ___           &kp BSPC      ___           &kp DEL       ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &hml LGUI N0  &hml LALT N4  &hml LSHFT N5 &hml LCTRL N6 ___         ,   ___           ___           ___           ___           ___         ,
+    &hml LGUI N0  &hml LALT N4  &hml LSHFT N5 &hml LCTRL N6 &kp DOT     ,   ___           HMRC_LPAR     &sk LSHFT     HMRA_RPAR     HMRG_RET    ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           &kp N1        &kp N2        &kp N3        ___         ,   ___           ___           ___           ___           ___         ,
+    &kp FSLH      &kp N1        &kp N2        &kp N3        &kp MINUS   ,   ___           ___           ___           ___           ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   ___           ___
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
@@ -225,11 +231,11 @@ ZMK_BASE_LAYER(Num,
 
 ZMK_BASE_LAYER(Sys,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                               _BT_SEL_KEYS_                            ,   ___           ___           ___           ___           ___         ,
+    &kp F12       &kp F7        &kp F8        &kp F9        &bootloader ,   &bootloader   &kp C_BRI_DEC &kp C_VOL_UP  &kp C_BRI_INC &kp C_PP    ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           &bootloader ,   &bootloader   ___           ___           ___           ___         ,
+    &hml LGUI F11 &hml LALT F4  &hml LSHFT F5 &hml LCTRL F6 &kp PG_DN   ,   STUDIO        HMRC_PREV     HMRS_VDN      HMRA_NEXT     HMRG_MUTE   ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           &sys_reset  ,   &sys_reset    ___           ___           ___           ___         ,
+    &kp F10       &kp F1        &kp F2        &kp F3        &kp PG_UP   ,   ___           BREAK         ___           ___           ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   ___           ___
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯

@@ -1,0 +1,64 @@
+{
+  // ZMK keymaps mix devicetree with C macros; DTS-LSP misparses the macro-generated nodes.
+  "files.associations": {
+    "*.keymap": "c"
+  },
+  "devicetree.cwd": "${workspaceFolder}",
+  "devicetree.defaultBindingType": "Zephyr",
+  "devicetree.allowAdhocContexts": true,
+  "devicetree.autoChangeContext": true,
+  "devicetree.defaultIncludePaths": [
+    "${workspaceFolder}/config",
+    "${workspaceFolder}/zmk/app",
+    "${workspaceFolder}/zmk/app/dts",
+    "${workspaceFolder}/zmk/app/include",
+    "${workspaceFolder}/zmk/app/module",
+    "${workspaceFolder}/zmk/app/module/dts",
+    "${workspaceFolder}/zmk/app/module/include",
+    "${workspaceFolder}/zephyr/dts",
+    "${workspaceFolder}/zephyr/include",
+    "${workspaceFolder}/modules/zmk/keyboards-split/boards/shields/chocofi",
+    "${workspaceFolder}/modules/zmk/adaptive-key/dts",
+    "${workspaceFolder}/modules/zmk/adaptive-key/include",
+    "${workspaceFolder}/modules/zmk/auto-layer/dts",
+    "${workspaceFolder}/modules/zmk/helpers/include",
+    "${workspaceFolder}/modules/zmk/tri-state/dts"
+  ],
+  "devicetree.defaultZephyrBindings": [
+    "zephyr/dts/bindings",
+    "zmk/app/dts/bindings",
+    "zmk/app/module/dts/bindings",
+    "modules/zmk/adaptive-key/dts/bindings",
+    "modules/zmk/auto-layer/dts/bindings",
+    "modules/zmk/tri-state/dts/bindings"
+  ],
+  "devicetree.preferredContext": "chocofi-dongle",
+  "devicetree.contexts": [
+    {
+      "ctxName": "chocofi-dongle",
+      "dtsFile": "zmk/app/boards/seeed/xiao_ble/xiao_ble_zmk.dts",
+      "overlays": [
+        "modules/zmk/keyboards-split/boards/shields/chocofi/chocofi_dongle.overlay",
+        "config/chocofi.keymap"
+      ]
+    },
+    {
+      "ctxName": "chocofi-left",
+      "dtsFile": "zmk/app/boards/nicekeyboards/nice_nano/nice_nano_nrf52840_zmk.dts",
+      "overlays": [
+        "zmk/app/boards/nicekeyboards/nice_nano/nice_nano_nrf52840_zmk_2_0_0.overlay",
+        "modules/zmk/keyboards-split/boards/shields/chocofi/chocofi_left.overlay",
+        "config/chocofi.keymap"
+      ]
+    },
+    {
+      "ctxName": "chocofi-right",
+      "dtsFile": "zmk/app/boards/nicekeyboards/nice_nano/nice_nano_nrf52840_zmk.dts",
+      "overlays": [
+        "zmk/app/boards/nicekeyboards/nice_nano/nice_nano_nrf52840_zmk_2_0_0.overlay",
+        "modules/zmk/keyboards-split/boards/shields/chocofi/chocofi_right.overlay",
+        "config/chocofi.keymap"
+      ]
+    }
+  ]
+}

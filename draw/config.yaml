@@ -9,28 +9,30 @@ parse_config:
   raw_binding_map:
     "&sys_reset": Reset
     "&bootloader": Boot
+    "&studio_unlock": Studio
     "&caps_word": Caps Word
     "&kp LA(F4)": Close
-
-    "&bt BT_SEL 0": BT 1
-    "&bt BT_SEL 1": BT 2
-    "&bt BT_SEL 2": BT 3
-    "&bt BT_SEL 3": BT 4
 
     "&kp LC(INS)": Copy
     "&kp LC(X)": Cut
     "&kp LS(INS)": Paste
+    "&kp LC(S)": Save
 
-    "&kp LG(LC(LEFT))": PDesk
-    "&kp LG(LC(RIGHT))": NDesk
-    "&kp LG(LC(LS(A)))": PinA.
-    "&kp LG(LC(LS(Q)))": PinW.
+    "&kp LA(LS(4))": Scnsht
+    "&kp LA(LS(T))": Term
+    "&kp LC(SPACE)": Run
+    "&kp LC(FSLH)": Comnt
 
     "&swapper": NWin
     "&kp LS(TAB)": PWin
     "&dot_spc": Sentence
     "&num_dance": { "t": "Smart"}
     "&magic_shift": { "t": Magic, "h": "Shift" }
+    "&key_repeat": Rpt
+
+    "&dbl_arrow": =>
+    "&sgl_arrow": ->
+    "&const_fn": JS ()
 
     "&hml LS(LALT)TAB": Tab
     "&hm_combo_lpar": { "t": "< (" }
@@ -38,16 +40,11 @@ parse_config:
     "&kp LBKT": { "t": "{ ["}
     "&kp RBKT": { "t": "} ]"}
 
-    "&msc SCRL_UP": Scroll ↑
-    "&msc SCRL_DOWN": Scroll ↓
-    "&msc SCRL_LEFT": Scroll ←
-    "&msc SCRL_RIGHT": Scroll →
-
-    "&mkp LCLK": Left Click
-    "&mkp RCLK": Right Click
-    "&mkp MCLK": Middle Click
-    "&mkp MB4": Back Click
-    "&mkp MB5": Forward Click
+    "WORD_KEB": { "t": "Word Keb" }
+    "WORD_PAS": { "t": "Word Pas" }
+    "WORD_PTH": { "t": "Word Path" }
+    "WORD_UND": { "t": "Word Snake" }
+    "CAPS_UND": { "t": "Caps Snake" }
 
   trans_legend: { "t": "", "type": "trans" }
 
@@ -59,6 +56,8 @@ parse_config:
     combo_gt: { hidden: true }
     combo_lbrc: { hidden: true }
     combo_rbrc: { hidden: true }
+    combo_cancel: { align: top, o: 0.5 }
+    combo_save: { align: bottom, o: 0.35 }
 
   zmk_keycode_map:
     # custom mappings
@@ -97,6 +96,8 @@ parse_config:
     C_VOL_DN: $$mdi:volume-medium$$
     C_NEXT: $$mdi:skip-forward$$
     C_PREV: $$mdi:skip-backward$$
+    C_BRI_INC: $$mdi:brightness-4$$
+    C_BRI_DEC: $$mdi:brightness-5$$
 
     # defaults
     AMPERSAND: "&"
@@ -167,7 +168,7 @@ parse_config:
 draw_config:
   append_colon_to_layer_header: false
   dark_mode: false
-  footer_text: "urob/zmk-config"
+  footer_text: "illusaen/zmk-config"
   glyph_tap_size: 15
   glyph_hold_size: 12
   glyph_shifted_size: 10
@@ -187,15 +188,14 @@ draw_config:
         --color-dendron: #d5c4a1;
         --color-held:    #bdae93;
 
-        --color-fn:      #458588;
         --color-nav:     #d79921;
-        --color-num:     #d65d0e;
+        --color-num:     #458588;
         --color-sys:     #689d6a;
 
         fill: var(--color-text);
         background-color: var(--color-bg);
-        font-family: Calibri, system-ui, sans-serif;
-        font-size: 16px;
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 14px;
         font-kerning: normal;
         text-rendering: optimizeLegibility;
     }
@@ -257,9 +257,8 @@ draw_config:
             --color-dendron: #504945;
             --color-held:    #665c54;
 
-            --color-fn:      #458588;
             --color-nav:     #fabd2f;
-            --color-num:     #d65d0e;
+            --color-num:     #458588;
             --color-sys:     #689d6a;
         }
     }
