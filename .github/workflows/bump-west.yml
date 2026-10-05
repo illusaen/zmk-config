@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   bump:
@@ -15,10 +14,34 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          persist-credentials: false
-      - uses: urob/pin-west@main
-        with:
-          # Pull requests opened by the default workflow token don't get CI
-          # runs. Set a PAT as WEST_UPDATE_TOKEN so the build workflow runs
-          # on the bump PR without manual approval.
           token: ${{ secrets.WEST_UPDATE_TOKEN || github.token }}
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          enable-cache: false
+      - name: Bump west versions
+        id: bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.WEST_UPDATE_TOKEN || github.token }}
+        run: |
+          uvx pin-west bump --manifest config/west.yml
+          if git diff --quiet -- config/west.yml; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+        if: steps.bump.outputs.updated == 'true'
+      - name: Set up updated build environment
+        if: steps.bump.outputs.updated == 'true'
+        run: nix develop --command init
+      - name: Build firmware with updated versions
+        if: steps.bump.outputs.updated == 'true'
+        run: nix develop --command build all
+      - name: Commit west versions
+        if: steps.bump.outputs.updated == 'true'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add config/west.yml
+          git commit -m "[chore] Bumped west versions"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
