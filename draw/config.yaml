@@ -11,20 +11,22 @@ parse_config:
     "&bootloader": Boot
     "&studio_unlock": Studio
     "&caps_word": Caps Word
-    "&kp LA(F4)": Close
 
-    "&kp LC(INS)": Copy
-    "&kp LC(X)": Cut
-    "&kp LS(INS)": Paste
-    "&kp LC(S)": Save
+    "&kp LC(INS)": $$mdi:content-copy$$
+    "&kp LC(X)": $$mdi:content-cut$$
+    "&kp LS(INS)": $$mdi:content-paste$$
+    "&kp LC(S)": $$mdi:content-save-outline$$
 
-    "&kp LA(LS(4))": Scnsht
-    "&kp LA(LS(T))": Term
-    "&kp LC(SPACE)": Run
-    "&kp LC(FSLH)": Comnt
+    "&kp LA(LS(4))": $$mdi:cellphone-screenshot$$
+    "&kp LA(LS(T))": $$mdi:console-line$$
+    "&kp LC(SPACE)": $$mdi:rocket-launch$$
+    "&kp LC(FSLH)": //
+    "&kp LC(HOME)": Doc S
+    "&kp LC(END)": Doc E
 
-    "&swapper": NWin
-    "&kp LS(TAB)": PWin
+    "&swapper": Alt Tab
+    "LS(LCTRL) LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
+    "&kp LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&dot_spc": Sentence
     "&num_dance": { "t": "Smart"}
     "&magic_shift": { "t": Magic, "h": "Shift" }
@@ -34,17 +36,20 @@ parse_config:
     "&sgl_arrow": ->
     "&const_fn": JS ()
 
-    "&hml LS(LALT)TAB": Tab
+    "&hml LS(LALT)TAB": { "t": $$mdi:keyboard-tab$$, "h": "" }
     "&hm_combo_lpar": { "t": "< (" }
     "&hm_combo_rpar": { "t": "> )"}
     "&kp LBKT": { "t": "{ ["}
     "&kp RBKT": { "t": "} ]"}
 
-    "WORD_KEB": { "t": "Word Keb" }
-    "WORD_PAS": { "t": "Word Pas" }
-    "WORD_PTH": { "t": "Word Path" }
-    "WORD_UND": { "t": "Word Snake" }
-    "CAPS_UND": { "t": "Caps Snake" }
+    "WORD_KEB": "wd-md"
+    "WORD_PAS": "WdMd"
+    "WORD_PTH": "wd/md"
+    "WORD_UND": "wd_md"
+    "CAPS_UND": "WD_MD"
+
+    "NAV_BSPC": { t: $$mdi:backspace-outline$$, h: "word" }
+    "NAV_DEL": { t: $$mdi:backspace-reverse-outline$$, h: "word" }
 
   trans_legend: { "t": "", "type": "trans" }
 
@@ -57,25 +62,24 @@ parse_config:
     combo_lbrc: { hidden: true }
     combo_rbrc: { hidden: true }
     combo_cancel: { align: top, o: 0.5 }
-    combo_save: { align: bottom, o: 0.35 }
+    combo_save: { align: bottom, o: 0.2 }
+    combo_bootloader: { align: top, o: 0.35 }
 
   zmk_keycode_map:
     # custom mappings
-    LALT: Alt
-    RALT: Alt
-    LCTRL: Ctrl
-    RCTRL: Ctrl
-    LGUI: Gui
-    RGUI: Gui
-    LSHFT: Shift
-    RSHFT: Shift
+    LALT: $$mdi:apple-keyboard-option$$
+    LCTRL: $$mdi:apple-keyboard-control$$
+    LGUI: $$mdi:apple-keyboard-command$$
+    LSHFT: $$mdi:apple-keyboard-shift$$
+    RSHFT: $$mdi:apple-keyboard-shift$$
 
-    BSPC: Bspc
-    DEL: Del
-    ESC: Esc
-    RET: Enter
-    SPACE: Spc
-    TAB: Tab
+    BSPC: $$mdi:backspace-outline$$
+    DEL: $$mdi:backspace-reverse-outline$$
+    ESC: $$mdi:keyboard-esc$$
+    RET: $$mdi:keyboard-return$$
+    SPACE: $$mdi:keyboard-space$$
+    LS(TAB): { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
+    PAUSE_BREAK: Break
 
     PG_UP: PgUp
     PG_DN: PgDn
@@ -88,7 +92,7 @@ parse_config:
     LEFT: ←
     RIGHT: →
 
-    K_CANCEL: Cancel
+    K_CANCEL: $$mdi:close-thick$$
 
     C_MUTE: $$mdi:volume-off$$
     C_PP: $$mdi:play-pause$$
@@ -165,17 +169,31 @@ parse_config:
     UNDER: _
     UNDERSCORE: _
 
+    F1: $$mdi:keyboard-f1$$
+    F2: $$mdi:keyboard-f2$$
+    F3: $$mdi:keyboard-f3$$
+    F4: $$mdi:keyboard-f4$$
+    F5: $$mdi:keyboard-f5$$
+    F6: $$mdi:keyboard-f6$$
+    F7: $$mdi:keyboard-f7$$
+    F8: $$mdi:keyboard-f8$$
+    F9: $$mdi:keyboard-f9$$
+    F10: $$mdi:keyboard-f10$$
+    F11: $$mdi:keyboard-f11$$
+    F12: $$mdi:keyboard-f12$$
+
 draw_config:
   append_colon_to_layer_header: false
   dark_mode: false
   footer_text: "illusaen/zmk-config"
-  glyph_tap_size: 15
+  glyph_tap_size: 16
   glyph_hold_size: 12
-  glyph_shifted_size: 10
+  glyph_shifted_size: 12
   legend_rel_y: 1
   outer_pad_w: 10
   outer_pad_h: 10
   small_pad: 4
+  shrink_wide_legends: 4
 
   svg_style: |
     svg path { fill: inherit; }
@@ -207,7 +225,7 @@ draw_config:
     }
 
     text.tap     { font-weight: 500; }
-    text.hold    { font-weight: 400; font-size: 13px; }
+    text.hold    { font-weight: 400; font-size: 11px; color: var(--color-sys) }
     text.shifted { font-weight: 400; font-size: 11px; }
     text.combo, text.left, text.right, text.tl, text.tr, text.bl, text.br { font-size: 10px; }
 
@@ -230,7 +248,7 @@ draw_config:
 
     rect.key, rect.combo, rect.combo-separate { fill: var(--color-key); stroke-width: 0; }
     rect.held, rect.combo.held                { fill: var(--color-held); }
-    .layer-Combos rect.key                    { fill: var(--color-ghost); }
+    .layer-Combos rect.key                    { fill: var(--color-ghost); font-size: 14px; }
 
     path.combo { stroke: var(--color-dendron); stroke-width: 2; stroke-dasharray: 2, 3; opacity: 0.45; fill: none; }
 

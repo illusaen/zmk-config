@@ -4,6 +4,8 @@
 modules
 firmware
 zephyr
+!config/zephyr/
+!config/zephyr/module.yml
 zmk
 draw/base.yaml
 draw/overview.yaml
