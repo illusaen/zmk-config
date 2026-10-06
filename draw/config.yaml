@@ -17,7 +17,7 @@ parse_config:
     "&kp LS(INS)": $$mdi:content-paste$$
     "&kp LC(S)": $$mdi:content-save-outline$$
 
-    "&kp LA(LS(4))": $$mdi:cellphone-screenshot$$
+    "&kp LA(LS(N4))": $$mdi:cellphone-screenshot$$
     "&kp LA(LS(T))": $$mdi:console-line$$
     "&kp LC(SPACE)": $$mdi:rocket-launch$$
     "&kp LC(FSLH)": //
