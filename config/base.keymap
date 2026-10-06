@@ -183,7 +183,7 @@ ZMK_MACRO(const_fn, bindings = <&kp EQUAL &kp SPACE &kp LPAR &kp RPAR &kp SPACE 
 #define HMRA_NEXT &hmr LALT C_NEXT
 #define HMRG_MUTE &hmr LGUI C_MUTE
 #define HMRC_PREV &hmr LCTRL C_PREV
-#define SCREENSHT &kp LA(LS(4))
+#define SCREENSHT &kp LA(LS(N4))
 #define LAUNCHER  &kp LC(SPACE)
 #define TERMINAL  &kp LA(LS(T))
 #define BREAK     &kp PAUSE_BREAK
