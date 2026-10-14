@@ -161,7 +161,11 @@ ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
               mods = <(MOD_LSFT|MOD_RSFT)>; keep-mods = <MOD_RSFT>;)
 
 // Tap: copy | double-tap: cut.
-ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
+ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(C)>, <&kp LC(X)>;
+              tapping-term-ms = <200>;)
+
+// Tap: double arrow | double-tap: single arrow.
+ZMK_TAP_DANCE(dbl_sgl_arr, bindings = <&dbl_arrow>, <&sgl_arrow>;
               tapping-term-ms = <200>;)
 
 ZMK_MACRO(dbl_arrow, bindings = <&kp EQUAL &kp GT &sk SPACE>; wait-ms = <0>;
@@ -219,11 +223,11 @@ ZMK_BASE_LAYER(Base,
 
 ZMK_BASE_LAYER(Nav,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    WORD_KEB      WORD_PTH      CAPS_UND      WORD_UND      WORD_PAS    ,   SCREENSHT     NAV_BSPC      NAV_UP        NAV_DEL       &kp HOME    ,
+    WORD_KEB      WORD_PTH      CAPS_UND      WORD_UND      WORD_PAS    ,   SCREENSHT     NAV_BSPC      NAV_UP        NAV_DEL       &kp PG_UP   ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     &swapper    ,   LAUNCHER      NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET     ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &const_fn     &sgl_arrow    &dbl_arrow    &key_repeat   ___         ,   TERMINAL      &kp PG_UP     COMMENT       &kp PG_DN     &kp END     ,
+    ___           &const_fn     &dbl_sgl_arr  &key_repeat   ___         ,   TERMINAL      &kp LC(LEFT)  COMMENT       &kp LC(RIGHT) &kp PG_DN   ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   ___           CANCEL
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
