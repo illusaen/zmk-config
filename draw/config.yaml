@@ -30,7 +30,7 @@ parse_config:
     "LS(LCTRL) LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&kp LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&dot_spc": Sntnce
-    "&smart_num": { "t": "Smart"}
+    "&smart_num": { "t": "Smart", "h": "Num" }
     "&magic_shift": { "t": Magic, "h": "Shift" }
     "&key_repeat": Rpt
 
