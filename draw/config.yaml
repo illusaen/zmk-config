@@ -12,9 +12,9 @@ parse_config:
     "&studio_unlock": Studio
     "&caps_word": Caps Word
 
-    "&kp LC(INS)": $$mdi:content-copy$$
+    "&kp LC(C)": $$mdi:content-copy$$
     "&kp LC(X)": $$mdi:content-cut$$
-    "&kp LS(INS)": $$mdi:content-paste$$
+    "&kp LC(V)": $$mdi:content-paste$$
     "&kp LC(S)": $$mdi:content-save-outline$$
 
     "&kp LA(LS(N4))": $$mdi:cellphone-screenshot$$
@@ -30,12 +30,11 @@ parse_config:
     "LS(LCTRL) LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&kp LS(TAB)": { "t": $$mdi:keyboard-tab-reverse$$, "h": "" }
     "&dot_spc": Sntnce
-    "&num_dance": { "t": "Smart"}
+    "&smart_num": { "t": "Smart"}
     "&magic_shift": { "t": Magic, "h": "Shift" }
     "&key_repeat": Rpt
 
-    "&dbl_arrow": =>
-    "&sgl_arrow": ->
+    "&dbl_sgl_arr": { "t": =>, "h": "->" }
     "&const_fn": JS ()
 
     "&hml LS(LALT)TAB": { "t": $$mdi:keyboard-tab$$, "h": "" }
