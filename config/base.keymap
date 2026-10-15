@@ -121,8 +121,8 @@ ZMK_ADAPTIVE_KEY(
 };
 
 // Tap: num-word | Hold: num-layer.
-#define SMART_NUM &smart_num NUM 0
-ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_word NUM>; flavor = "balanced";
+#define SMART_NUM &smart_num NUM NUM
+ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_word>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 
 /* Custom behaviors */
